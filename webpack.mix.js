@@ -56,12 +56,14 @@ mix.js('resources/js/admin/app.js', 'public/js/admin')
     .sass('resources/sass/app.scss', 'public/css')    
     .styles(
         [
-            'node_modules/themify-icons/css/themify-icons.css',
-            'node_modules/selectFX/css/cs-skin-elastic.css',
-            'node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css',
-            'node_modules/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
+            'resources/libraries/fontawesome/css/all.css',
+            nodeDir + '/themify-icons/css/themify-icons.css',
+            nodeDir + '/selectFX/css/cs-skin-elastic.css',
+            nodeDir + '/datatables.net-bs4/css/dataTables.bootstrap4.min.css',
+            nodeDir + '/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
             'resources/css/admin/googleapis.css',
             'resources/css/admin/style.css',
         ], 
         'public/css/admin/layout.css'
-    );
+    )
+    .copyDirectory('resources/libraries/fontawesome/webfonts', 'public/css/webfonts');
