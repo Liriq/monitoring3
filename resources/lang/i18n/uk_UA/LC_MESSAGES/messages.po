@@ -134,3 +134,15 @@ msgstr "Додати"
 
 msgid "Actions"
 msgstr "Дії"
+
+msgid "Settings"
+msgstr "Налаштування"
+
+msgid "Setting"
+msgstr "Налаштування"
+
+msgid "Templates"
+msgstr "Шаблони"
+
+msgid "Template"
+msgstr "Шаблон"

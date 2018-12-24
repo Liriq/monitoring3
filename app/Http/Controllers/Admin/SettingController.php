@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Entities\Setting;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\SettingRequest;
 
 class SettingController extends Controller
 {
@@ -14,7 +15,9 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.settings.index', [
+            'settings' => Setting::get(),
+        ]);
     }
 
     /**
@@ -24,18 +27,27 @@ class SettingController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.settings.create', [
+            'setting' => new Setting(),           
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\SettingRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SettingRequest $request)
     {
-        //
+        $post = $request->all();
+        $setting = new Setting;        
+        if ($setting->fill($post) && $setting->save()) {
+                        
+            return redirect()->route('admin.settings.index')->with('flash_success', _i('Data saved successfully!'));
+        }
+        
+        return redirect()->back()->withInput()->with('flash_danger', _i('We received an error while saving data!'));
     }
 
     /**
@@ -57,19 +69,27 @@ class SettingController extends Controller
      */
     public function edit(Setting $setting)
     {
-        //
+        return view('admin.settings.edit', [
+            'setting' => $setting,          
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\SettingRequest $request
      * @param  \App\Entities\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Setting $setting)
+    public function update(SettingRequest $request, Setting $setting)
     {
-        //
+        $post = $request->all();        
+        if ($setting->update($post)){
+            
+            return redirect()->route('admin.settings.index')->with('flash_success', _i('Data successfully updated!'));
+        }
+        
+        return redirect()->back()->withInput()->with('flash_danger', _i('We received an error while updating data!'));
     }
 
     /**
@@ -80,6 +100,8 @@ class SettingController extends Controller
      */
     public function destroy(Setting $setting)
     {
-        //
+        $setting->delete();
+
+        return redirect()->route('admin.settings.index')->with('flash_success', _i('Data successfully deleted!'));
     }
 }

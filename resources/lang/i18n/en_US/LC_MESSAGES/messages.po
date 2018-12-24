@@ -131,3 +131,15 @@ msgstr "Add"
 
 msgid "Actions"
 msgstr "Actions"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Setting"
+msgstr "Setting"
+
+msgid "Templates"
+msgstr "Templates"
+
+msgid "Template"
+msgstr "Template"

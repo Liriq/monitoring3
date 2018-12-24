@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Entities\Template;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\TemplateRequest;
 
 class TemplateController extends Controller
 {
@@ -14,7 +15,9 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.templates.index', [
+            'templates' => Template::get(),
+        ]);
     }
 
     /**
@@ -24,18 +27,27 @@ class TemplateController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.templates.create', [
+            'template' => new Template(),           
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\TemplateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TemplateRequest $request)
     {
-        //
+        $post = $request->all();
+        $template = new Template;        
+        if ($template->fill($post) && $template->save()) {
+                        
+            return redirect()->route('admin.templates.index')->with('flash_success', _i('Data saved successfully!'));
+        }
+        
+        return redirect()->back()->withInput()->with('flash_danger', _i('We received an error while saving data!'));
     }
 
     /**
@@ -57,19 +69,27 @@ class TemplateController extends Controller
      */
     public function edit(Template $template)
     {
-        //
+        return view('admin.templates.edit', [
+            'template' => $template,          
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Admin\TemplateRequest $request
      * @param  \App\Entities\Template  $template
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Template $template)
+    public function update(TemplateRequest $request, Template $template)
     {
-        //
+        $post = $request->all();        
+        if ($template->update($post)){
+            
+            return redirect()->route('admin.templates.index')->with('flash_success', _i('Data successfully updated!'));
+        }
+        
+        return redirect()->back()->withInput()->with('flash_danger', _i('We received an error while updating data!'));
     }
 
     /**
@@ -80,6 +100,8 @@ class TemplateController extends Controller
      */
     public function destroy(Template $template)
     {
-        //
+        $template->delete();
+
+        return redirect()->route('admin.templates.index')->with('flash_success', _i('Data successfully deleted!'));
     }
 }

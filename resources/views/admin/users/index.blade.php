@@ -10,7 +10,9 @@
     <div class="animated fadeIn">
         <div class="row">
             <div class="col-md-12">
-                <a href="{{ route('admin.users.create') }}" class="btn btn-success float-right">{{ _i('Add') }}</a>      
+                <a href="{{ route('admin.users.create') }}" class="btn btn-success float-right">{{ _i('Add') }}</a>  
+            </div>            
+            <div class="col-md-12">     
                 <nav>
                   <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-employees-tab" data-toggle="tab" href="#nav-employees" role="tab" aria-controls="nav-home" aria-selected="true">

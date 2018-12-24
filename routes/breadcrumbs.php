@@ -23,3 +23,21 @@ Breadcrumbs::for('admin-users-edit', function ($trail, $user) {
     $trail->push(_i('Edit'), route('admin.users.edit', $user->id));
 });
 
+// Admin > Reports
+Breadcrumbs::for('admin-reports', function ($trail) {
+    $trail->parent('admin-dashboard');
+    $trail->push(_i('Reports'), route('admin.reports.index'));
+});
+
+// Admin > Templates
+Breadcrumbs::for('admin-templates', function ($trail) {
+    $trail->parent('admin-dashboard');
+    $trail->push(_i('Templates'), route('admin.templates.index'));
+});
+
+// Admin > Settings
+Breadcrumbs::for('admin-settings', function ($trail) {
+    $trail->parent('admin-dashboard');
+    $trail->push(_i('Settings'), route('admin.settings.index'));
+});
+
