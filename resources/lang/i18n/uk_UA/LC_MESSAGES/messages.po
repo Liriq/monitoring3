@@ -146,3 +146,27 @@ msgstr "Шаблони"
 
 msgid "Template"
 msgstr "Шаблон"
+
+msgid "Create setting"
+msgstr "Створити Налаштування"
+
+msgid "Edit setting"
+msgstr "Редагувати Налаштування"
+
+msgid "Create template"
+msgstr "Створити шаблон"
+
+msgid "Edit template"
+msgstr "Редагувати шаблон"
+
+msgid "Create report"
+msgstr "Створити звіт"
+
+msgid "Edit report"
+msgstr "Редагувати звіт"
+
+msgid "Value"
+msgstr "Значення"
+
+msgid "Description"
+msgstr "Опис"

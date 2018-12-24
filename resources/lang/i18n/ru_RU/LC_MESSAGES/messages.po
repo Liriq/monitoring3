@@ -143,3 +143,27 @@ msgstr "Шаблоны"
 
 msgid "Template"
 msgstr "Шаблон"
+
+msgid "Create setting"
+msgstr "Создать найстройку"
+
+msgid "Edit setting"
+msgstr "Редактировать настройку"
+
+msgid "Create template"
+msgstr "Создать шаблон"
+
+msgid "Edit template"
+msgstr "Редактировать шаблон"
+
+msgid "Create report"
+msgstr "Создать отчет"
+
+msgid "Edit report"
+msgstr "Редактировать отчет"
+
+msgid "Value"
+msgstr "Значение"
+
+msgid "Description"
+msgstr "Описание"

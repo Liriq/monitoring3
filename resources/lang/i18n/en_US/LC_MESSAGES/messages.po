@@ -143,3 +143,27 @@ msgstr "Templates"
 
 msgid "Template"
 msgstr "Template"
+
+msgid "Create setting"
+msgstr "Create setting"
+
+msgid "Edit setting"
+msgstr "Edit setting"
+
+msgid "Create template"
+msgstr "Create template"
+
+msgid "Edit template"
+msgstr "Edit template"
+
+msgid "Create report"
+msgstr "Create report"
+
+msgid "Edit report"
+msgstr "Edit report"
+
+msgid "Value"
+msgstr "Value"
+
+msgid "Description"
+msgstr "Description"

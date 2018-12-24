@@ -1,7 +1,7 @@
-{{ Form::model($user, ['route' => !empty($user->id)? ['admin.users.update', $user->id] : ['admin.users.store'], 'class' => 'form-horizontal form-label-left', 'id' => 'users-form', 'enctype' => 'multipart/form-data']) }}   
-        @method(!empty($user->id)? 'PUT' : 'POST')
-        @if (!empty($user->id))
-            {{ Form::hidden('id', $user->id) }}
+{{ Form::model($setting, ['route' => !empty($setting->id)? ['admin.settings.update', $setting->id] : ['admin.settings.store'], 'class' => 'form-horizontal form-label-left', 'id' => 'settings-form', 'enctype' => 'multipart/form-data']) }}   
+        @method(!empty($setting->id)? 'PUT' : 'POST')
+        @if (!empty($setting->id))
+            {{ Form::hidden('id', $setting->id) }}
         @endif   
         
         <div class="row form-group">
@@ -9,62 +9,35 @@
                 {{ Form::label('input_name', _i('Name'), ['class' => 'form-control-label']) }}
             </div>
             <div class="col-12 col-md-9">
-                {{ Form::text("name", $user->name, ["class" => "form-control", "placeholder" => _i('Name'), "id"=>"input_name", 'required' => 'required']) }}
+                {{ Form::text("name", $setting->name, ["class" => "form-control", "placeholder" => _i('Name'), "id"=>"input_name", 'required' => 'required']) }}
             </div>
         </div>
         
         <div class="row form-group">
             <div class="col col-md-3">
-                {{ Form::label('input_lastname', _i('Last name'), ['class' => 'form-control-label']) }}
+                {{ Form::label('input_value', _i('Value'), ['class' => 'form-control-label']) }}
             </div>
             <div class="col-12 col-md-9">
-                {{ Form::text("lastname", $user->lastname, ["class" => "form-control", "placeholder" => _i('Last name'), "id"=>"input_lastname", 'required' => 'required']) }}
+                {{ Form::text("value", $setting->value, ["class" => "form-control", "placeholder" => _i('Value'), "id"=>"input_value", 'required' => 'required']) }}
+            </div>
+        </div>
+        
+        <div class="row form-group">
+            <div class="col col-md-3">
+                {{ Form::label('input_description', _i('Description'), ['class' => 'form-control-label']) }}
+            </div>
+            <div class="col-12 col-md-9">
+                {{ Form::textarea("description", $setting->description, ["class" => "form-control", "placeholder" => _i('Description'), "id"=>"input_description"]) }}
             </div>
         </div> 
-        
-        <div class="row form-group">
-            <div class="col col-md-3">
-                {{ Form::label('email', _i('Email'), ['class' => 'form-control-label']) }}
-            </div>
-            <div class="col-12 col-md-9">
-                {{ Form::email("email", $user->email, ["class" => "form-control", "placeholder" => _i('Email'), "id"=>"email", 'required' => 'required']) }}
-            </div>
-        </div> 
-        
-        <div class="row form-group">
-            <div class="col col-md-3">
-                {{ Form::label('role_id', _i('Role'), ['class' => 'form-control-label']) }}
-            </div>
-            <div class="col-12 col-md-9">
-                {{ Form::select('role_id', $roles, $user->roles->isNotEmpty() ? $user->roles->pluck('id') : null, ['placeholder' => _i('Role'),'class' => 'form-control select2', 'required' => 'required']) }}
-            </div>
-        </div>        
-        
-        <div class="row form-group">
-            <div class="col col-md-3">
-                {{ Form::label('password', _i('Password'), ['class' => 'form-control-label']) }} 
-            </div>
-            <div class="col-12 col-md-9">
-                {{ Form::password('password', ["class" => "form-control", "placeholder" => _i('Password'), "id"=>"password"]) }}
-            </div>
-        </div>     
-        
-        <div class="row form-group">
-            <div class="col col-md-3">
-                {{ Form::label('note', _i('Note'), ['class' => 'form-control-label']) }}
-            </div>
-            <div class="col-12 col-md-9">
-                {{ Form::textarea("note", ($user->notes->isNotEmpty())? $user->notes->first()->text : '', ["class" => "form-control", "placeholder" => _i('Note'), "id"=>"note"]) }}
-            </div>
-        </div>   
 
         <div class="ln_solid"></div>
         <div class="form-group">
             <div class="float-right">
-                {{ Form::submit( !empty($user->id) ? _i('Edit') : _i('Save'), ['class' => 'btn btn-success']) }}
+                {{ Form::submit( !empty($setting->id) ? _i('Edit') : _i('Save'), ['class' => 'btn btn-success']) }}
             </div>
             <div class="">
-                <a href="{{ route('admin.users.index') }}" class="btn btn-danger">{{ _i('Cancel') }}</a>
+                <a href="{{ route('admin.settings.index') }}" class="btn btn-danger">{{ _i('Cancel') }}</a>
             </div>
         </div>
 {{ Form::close() }}

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('breadcrumbs', Breadcrumbs::render('admin-users-create') )
+@section('breadcrumbs', Breadcrumbs::render('admin-settings-create') )
 
 @push('styles')
 @endpush
@@ -10,10 +10,10 @@
     <div class="animated fadeIn">
         <div class="card">
             <div class="card-header">
-                <strong>{{ _i('Create user') }}</strong>
+                <strong>{{ _i('Create setting') }}</strong>
             </div>
             <div class="card-body card-block">
-                 @include('admin.users._form')                 
+                 @include('admin.settings._form')                 
             </div>
         </div>
     </div><!-- .animated -->
