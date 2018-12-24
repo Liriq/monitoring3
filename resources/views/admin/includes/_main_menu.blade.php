@@ -3,13 +3,10 @@
         <li>
             <a href="{{ route('admin.index') }}"> <i class="menu-icon fa fa-home"></i>{{ _i('Home') }} </a>
         </li>
-        <li class="menu-item-has-children dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>{{ _i('Users') }}</a>
-            <ul class="sub-menu children dropdown-menu">
-                <li><i class="fas fa-user-cog"></i><a href="ui-buttons.html">{{ _i('Admins') }}</a></li>
-                <li><i class="fas fa-user-tie"></i></i><a href="ui-badges.html">{{ _i('Employees') }}</a></li>
-            </ul>
+        <li>
+            <a href="{{ route('admin.users.index') }}"> <i class="menu-icon fa fa-users"></i>{{ _i('Users') }} </a>
         </li>
+
 
         <h3 class="menu-title">Icons</h3><!-- /.menu-title -->
 

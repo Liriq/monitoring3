@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'lastname', 'email',
     ];
 
     /**
@@ -29,4 +29,56 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function scopeEmployee($q)
+    {
+        return $q->whereRoleIs('employee');
+    }
+    
+    public function scopeAdmin($q)
+    {
+        return $q->whereRoleIs('admin');
+    }    
+
+    /**
+     * This scope allows to retrive the users with a specific roles.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  array  $roles
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWhereRolesAre($query, $roles)
+    {
+        return $query->whereHas('roles', function ($roleQuery) use ($roles) {
+            $roleQuery->whereIn('name', $roles);
+        });
+    }
+    
+    public function notes()
+    {
+        return $this->morphMany(Note::class, 'target');
+    }    
+    
+    /**
+     * @return string
+     */
+    public function getFullNameAttribute(): string
+    {
+        return $this->lastname . ' ' . $this->name;
+    }
+    
+    public function createOrUpdateNote($note)
+    {
+        if (!empty($note)) {
+            if ($this->notes->isEmpty()) {
+                $this->notes()->create(['text' => $note]);
+            } else {
+                $userNote = $this->notes()->first();
+                $userNote->text = $note;
+                $userNote->save();
+            }
+
+        }
+    }        
+        
 }

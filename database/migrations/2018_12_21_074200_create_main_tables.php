@@ -65,6 +65,18 @@ class CreateMainTables extends Migration
             $table->string('value');
             $table->timestamps();
         });
+        
+        Schema::create('notes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('text');
+            $table->morphs('target');
+            $table->softDeletes(); 
+            $table->timestamps();
+        });      
+        
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('lastname')->after('name')->nullable();
+        });   
     }
 
     /**
@@ -79,5 +91,9 @@ class CreateMainTables extends Migration
         Schema::dropIfExists('reports');
         Schema::dropIfExists('templates');
         Schema::dropIfExists('settings');
+        Schema::dropIfExists('notes');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('lastname');
+        });
     }
 }

@@ -51,6 +51,9 @@ msgstr "Скасувати"
 msgid "Admin"
 msgstr "Адмін"
 
+msgid "Admins"
+msgstr "Адміни"
+
 msgid "Admin dashboard"
 msgstr "Адмін панель"
 
@@ -70,7 +73,7 @@ msgid "Employee"
 msgstr "Виконавець"
 
 msgid "Employees"
-msgstr "Виконавеці"
+msgstr "Виконавці"
 
 msgid "Roles"
 msgstr "Ролі"
@@ -80,3 +83,9 @@ msgstr "Роль"
 
 msgid "Map"
 msgstr "Мапа"
+
+msgid "Users"
+msgstr "Користувачі"
+
+msgid "Are you sure?"
+msgstr "Ви впевнені?"

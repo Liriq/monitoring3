@@ -14,11 +14,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="favicon.ico">    
+    <link rel="shortcut icon" href="/favicon.ico">    
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/layout.css') }}" rel="stylesheet">    
     @stack('styles')
-    <script src="js/admin/jquery.min.js" ></script>
+    <script src="{{ asset('js/admin/jquery.min.js') }}" ></script>
 </head>
 
 <body>
@@ -31,8 +31,8 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                <a class="navbar-brand" href="/"><img src="/images/logo.png" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="/"><img src="/images/logo2.png" alt="Logo"></a>
             </div>
 
             @include('admin/includes/_main_menu')
@@ -69,6 +69,8 @@
                 </div>
             </div>
         </div>
+        
+        @include('admin/includes/_flash_messages')
 
         @yield('content')
 

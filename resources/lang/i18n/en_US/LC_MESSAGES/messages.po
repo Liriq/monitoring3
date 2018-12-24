@@ -80,3 +80,9 @@ msgstr "Role"
 
 msgid "Map"
 msgstr "Map"
+
+msgid "Users"
+msgstr "Users"
+
+msgid "Are you sure?"
+msgstr "Are you sure?"

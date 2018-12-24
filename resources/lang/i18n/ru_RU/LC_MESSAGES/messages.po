@@ -80,3 +80,9 @@ msgstr "Роль"
 
 msgid "Map"
 msgstr "Карта"
+
+msgid "Users"
+msgstr "Пользователи"
+
+msgid "Are you sure?"
+msgstr "Вы уверены?"

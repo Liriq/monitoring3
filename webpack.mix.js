@@ -63,6 +63,7 @@ mix.js('resources/js/admin/app.js', 'public/js/admin')
             nodeDir + '/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
             'resources/css/admin/googleapis.css',
             'resources/css/admin/style.css',
+            'resources/css/admin/common.css',
         ], 
         'public/css/admin/layout.css'
     )
