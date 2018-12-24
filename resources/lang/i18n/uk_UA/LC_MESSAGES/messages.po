@@ -1,0 +1,82 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MultilanguageLaravelApplication\n"
+"POT-Creation-Date: 2018-04-30 17:33+0000\n"
+"PO-Revision-Date: 2018-04-30 17:33+0000\n"
+"Last-Translator: James Translator <james@translations.colm>\n"
+"Language-Team: James Translator <james@translations.colm>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;__;_i;_s;gettext;_n:1,2;ngettext:1,2;dgettext:2\n"
+"X-Poedit-Basepath: ../../../../../app\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: Http\n"
+"X-Poedit-SearchPath-1: ../resources/views\n"
+"X-Poedit-SearchPath-2: Console\n"
+"X-Poedit-SearchPath-3: ../storage/framework/messages/\n"
+
+msgid "Dashboard"
+msgstr "Панель"
+
+msgid "Home"
+msgstr "Головна"
+
+msgid "About"
+msgstr "Про нас"
+
+msgid "Contact"
+msgstr "Зворотній зв'язок"
+
+msgid "Log Out"
+msgstr "Вихід"
+
+msgid "Edit"
+msgstr "Редагувати"
+
+msgid "Send"
+msgstr "Надіслати"
+
+msgid "Delete"
+msgstr "Вилучити"
+
+msgid "Save"
+msgstr "Зберегти"
+
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "Admin"
+msgstr "Адмін"
+
+msgid "Admin dashboard"
+msgstr "Адмін панель"
+
+msgid "Reports"
+msgstr "Звіти"
+
+msgid "Report"
+msgstr "Звіт"
+
+msgid "Setting"
+msgstr "Налаштування"
+
+msgid "Template reports"
+msgstr "Шаблони звітів"
+
+msgid "Employee"
+msgstr "Виконавець"
+
+msgid "Employees"
+msgstr "Виконавеці"
+
+msgid "Roles"
+msgstr "Ролі"
+
+msgid "Role"
+msgstr "Роль"
+
+msgid "Map"
+msgstr "Мапа"

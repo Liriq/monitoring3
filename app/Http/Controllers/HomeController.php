@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use LaravelGettext;
 
 class HomeController extends Controller
 {
@@ -25,4 +26,15 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    
+    /**
+     * Changes the current language and returns to previous page
+     * @return Redirect
+     */
+    public function changeLang($locale=null)
+    {
+        LaravelGettext::setLocale($locale);
+        
+        return redirect()->back();
+    }    
 }
