@@ -1,5 +1,6 @@
 let mix = require('laravel-mix');
 let webpack = require('webpack');
+let nodeDir = './node_modules';
 
 /*
  |--------------------------------------------------------------------------
@@ -30,10 +31,10 @@ let webpack = require('webpack');
         })
     ],
 });
- 
-let nodeDir = './node_modules';
+
 
 mix.js('resources/js/admin/app.js', 'public/js/admin')
+    .js('resources/js/app.js', 'public/js')
     .copy('resources/js/admin/jquery.min.js', 'public/js/admin')    
     .js(
         [            
