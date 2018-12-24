@@ -22,11 +22,31 @@ class SettingRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
-        return [
-            'name' => 'required|string|max:255',
-            'value' => 'required|string|max:255',
-            'description' => 'nullable|string|max:2048',
-        ];
+    {        
+        $rules = [];
+        switch($this->method())
+        {
+            case 'POST':
+            {
+                $rules = [                    
+                    'name' => 'required|string|max:255|unique:settings,name', 
+                    'value' => 'required|string|max:255',
+                    'description' => 'nullable|string|max:2048',
+                ];
+                break;
+            }
+            case 'PUT':
+            case 'PATCH':
+            {
+                $rules = [                    
+                    'name' => 'required|string|max:255|unique:settings,name,'.$this->id, 
+                    'value' => 'required|string|max:255',
+                    'description' => 'nullable|string|max:2048',
+                ];
+            }
+            default: break;
+        }
+        
+        return $rules;        
     }
 }

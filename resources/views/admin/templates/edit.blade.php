@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('breadcrumbs', Breadcrumbs::render('admin-users-edit', $user) )
+@section('breadcrumbs', Breadcrumbs::render('admin-templates-edit', $template) )
 
 @push('styles')
 @endpush
@@ -10,10 +10,10 @@
     <div class="animated fadeIn">
         <div class="card">
             <div class="card-header">
-                <strong>{{ _i('Edit user') }}</strong>
+                <strong>{{ _i('Edit template') }}</strong>
             </div>
             <div class="card-body card-block">
-                 @include('admin.users._form')                 
+                 @include('admin.templates._form')                 
             </div>
         </div>
     </div><!-- .animated -->

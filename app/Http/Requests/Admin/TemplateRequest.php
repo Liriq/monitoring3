@@ -23,8 +23,26 @@ class TemplateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        $rules = [];
+        switch($this->method())
+        {
+            case 'POST':
+            {
+                $rules = [                    
+                    'name' => 'required|string|max:255|unique:templates,name',
+                ];
+                break;
+            }
+            case 'PUT':
+            case 'PATCH':
+            {
+                $rules = [                    
+                    'name' => 'required|string|max:255|unique:templates,name,'.$this->id,
+                ];
+            }
+            default: break;
+        }
+        
+        return $rules;
     }
 }
