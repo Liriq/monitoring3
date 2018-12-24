@@ -54,10 +54,21 @@ class User extends Authenticatable
         });
     }
     
-    public function notes()
+    /**
+     * @return MorphMany
+     */
+    public function notes(): MorphMany
     {
         return $this->morphMany(Note::class, 'target');
-    }    
+    }
+    
+    /**
+     * @return HasMany
+     */
+    public function reports(): HasMany
+    {
+        return $this->hasMany(Report::class);
+    }     
     
     /**
      * @return string
@@ -79,6 +90,6 @@ class User extends Authenticatable
             }
 
         }
-    }        
+    }       
         
 }
