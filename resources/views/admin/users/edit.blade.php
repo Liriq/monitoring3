@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('breadcrumbs', Breadcrumbs::render('admin-users-edit', $user) )
+
 @push('styles')
 @endpush
 

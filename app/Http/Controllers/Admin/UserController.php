@@ -54,10 +54,10 @@ class UserController extends Controller
             $user->attachRole($role);
             $user->createOrUpdateNote($post['note'] ?? null);
             
-            return redirect()->route('admin.users.index')->with('flash_success', _i('User was created successfully!'));
+            return redirect()->route('admin.users.index')->with('flash_success', _i('Data saved successfully!'));
         }
         
-        return redirect()->back()->withInput()->with('flash_danger', _i('We have error while creating data'));
+        return redirect()->back()->withInput()->with('flash_danger', _i('We received an error while saving data!'));
     }
 
     /**
@@ -104,10 +104,10 @@ class UserController extends Controller
         if ($user->save()){
             $user->createOrUpdateNote($post['note'] ?? null);
             
-            return redirect()->route('admin.users.index')->with('flash_success', _i('User was updated successfully!'));
+            return redirect()->route('admin.users.index')->with('flash_success', _i('Data successfully updated!'));
         }
         
-        return redirect()->back()->withInput()->with('flash_danger', _i('We have error while updating data'));
+        return redirect()->back()->withInput()->with('flash_danger', _i('We received an error while updating data!'));
     }
 
     /**
@@ -120,6 +120,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('admin.users.index')->with('flash_success', _i('Data was successfully deleted'));
+        return redirect()->route('admin.users.index')->with('flash_success', _i('Data successfully deleted!'));
     }
 }

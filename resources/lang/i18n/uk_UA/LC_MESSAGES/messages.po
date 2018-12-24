@@ -89,3 +89,48 @@ msgstr "Користувачі"
 
 msgid "Are you sure?"
 msgstr "Ви впевнені?"
+
+msgid "Create"
+msgstr "Створити"
+
+msgid "Edit user"
+msgstr "Редагувати користувача"
+
+msgid "Create user"
+msgstr "Створити користувача"
+
+msgid "Name"
+msgstr "Ім'я"
+
+msgid "Last name"
+msgstr "Прізвище"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Note"
+msgstr "Примітка"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Data saved successfully!"
+msgstr "Дані успішно збережені!"
+
+msgid "We received an error while saving data!"
+msgstr "Під час збереження даних ми отримали помилку!"
+
+msgid "Data successfully updated!"
+msgstr "Дані успішно оновлено!"
+
+msgid "We received an error while updating data!"
+msgstr "Під час оновлення даних ми отримали помилку!"
+
+msgid "Data successfully deleted!"
+msgstr "Дані успішно видалено!"
+
+msgid "Add"
+msgstr "Додати"
+
+msgid "Actions"
+msgstr "Дії"

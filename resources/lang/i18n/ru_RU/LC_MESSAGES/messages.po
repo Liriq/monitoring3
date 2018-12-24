@@ -86,3 +86,48 @@ msgstr "Пользователи"
 
 msgid "Are you sure?"
 msgstr "Вы уверены?"
+
+msgid "Create"
+msgstr "Создать"
+
+msgid "Edit user"
+msgstr "Редактировать пользователя"
+
+msgid "Create user"
+msgstr "Создать пользователя"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Last name"
+msgstr "Фамилия"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Note"
+msgstr "Заметка"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Data saved successfully!"
+msgstr "Данные успешно сохранены!"
+
+msgid "We received an error while saving data!"
+msgstr "Мы получили ошибку при сохранении данных!"
+
+msgid "Data successfully updated!"
+msgstr "Данные успешно обновлены!"
+
+msgid "We received an error while updating data!"
+msgstr "Мы получили ошибку при обновлении данных!"
+
+msgid "Data successfully deleted!"
+msgstr "Данные успешно удалены!"
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "Actions"
+msgstr "Действия"

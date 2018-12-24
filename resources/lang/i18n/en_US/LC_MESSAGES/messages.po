@@ -86,3 +86,48 @@ msgstr "Users"
 
 msgid "Are you sure?"
 msgstr "Are you sure?"
+
+msgid "Create"
+msgstr "Create"
+
+msgid "Edit user"
+msgstr "Edit user"
+
+msgid "Create user"
+msgstr "Create user"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Last name"
+msgstr "Last name"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Note"
+msgstr "Note"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Data saved successfully!"
+msgstr "Data saved successfully!"
+
+msgid "We received an error while saving data!"
+msgstr "We received an error while saving data!"
+
+msgid "Data successfully updated!"
+msgstr "Data successfully updated!"
+
+msgid "We received an error while updating data!"
+msgstr "We received an error while updating data!"
+
+msgid "Data successfully deleted!"
+msgstr "Data successfully deleted!"
+
+msgid "Add"
+msgstr "Add"
+
+msgid "Actions"
+msgstr "Actions"

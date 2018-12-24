@@ -22,7 +22,7 @@ return [
      * Default locale: this will be the default for your application.
      * Is to be supposed that all strings are written in this language.
      */
-    'locale' => 'ru_RU',
+    'locale' => 'uk_UA',
 
     /**
      * Supported locales: An array containing all allowed languages
@@ -65,7 +65,7 @@ return [
     /**
      * Fallback locale: When default locale is not available
      */
-    'fallback-locale' => 'ru_RU',
+    'fallback-locale' => 'en_US',
 
     /**
      * Default domain used for translations: It is the file name for .po and .mo files

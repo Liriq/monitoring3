@@ -15,10 +15,10 @@
         
         <div class="row form-group">
             <div class="col col-md-3">
-                {{ Form::label('input_lastname', _i('Lastname'), ['class' => 'form-control-label']) }}
+                {{ Form::label('input_lastname', _i('Last name'), ['class' => 'form-control-label']) }}
             </div>
             <div class="col-12 col-md-9">
-                {{ Form::text("lastname", $user->lastname, ["class" => "form-control", "placeholder" => _i('Lastname'), "id"=>"input_lastname", 'required' => 'required']) }}
+                {{ Form::text("lastname", $user->lastname, ["class" => "form-control", "placeholder" => _i('Last name'), "id"=>"input_lastname", 'required' => 'required']) }}
             </div>
         </div> 
         
@@ -36,7 +36,7 @@
                 {{ Form::label('role_id', _i('Role'), ['class' => 'form-control-label']) }}
             </div>
             <div class="col-12 col-md-9">
-                {{ Form::select('role_id', $roles, $user->roles->isNotEmpty() ? $user->roles->pluck('id') : null, ['placeholder' => _i('Role'),'class' => 'form-control select2']) }}
+                {{ Form::select('role_id', $roles, $user->roles->isNotEmpty() ? $user->roles->pluck('id') : null, ['placeholder' => _i('Role'),'class' => 'form-control select2', 'required' => 'required']) }}
             </div>
         </div>        
         
