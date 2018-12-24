@@ -66,4 +66,5 @@ mix.js('resources/js/admin/app.js', 'public/js/admin')
         ], 
         'public/css/admin/layout.css'
     )
-    .copyDirectory('resources/libraries/fontawesome/webfonts', 'public/css/webfonts');
+    .copyDirectory('resources/libraries/fontawesome/webfonts', 'public/css/webfonts')
+    .copyDirectory('resources/images', 'public/images');
