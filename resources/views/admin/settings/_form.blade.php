@@ -29,9 +29,8 @@
             <div class="col-12 col-md-9">
                 {{ Form::textarea("description", $setting->description, ["class" => "form-control", "placeholder" => _i('Description'), "id"=>"input_description"]) }}
             </div>
-        </div> 
-
-        <div class="ln_solid"></div>
+        </div>
+        
         <div class="form-group">
             <div class="float-right">
                 {{ Form::submit( !empty($setting->id) ? _i('Edit') : _i('Save'), ['class' => 'btn btn-success']) }}

@@ -3,6 +3,9 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use App\Entities\Template;
+use App\Entities\User;
 
 class ReportRequest extends FormRequest
 {
@@ -23,8 +26,42 @@ class ReportRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        $rules = [];
+        switch($this->method())
+        {
+            case 'POST':
+            {
+                $rules = [                    
+                    'template_id' => [
+                        'required',
+                        Rule::in(Template::pluck('id')->toArray()),
+                    ],
+                    'published_at' => 'required|date',
+                    'user_id' => [
+                        'required',
+                        Rule::in(User::employee()->pluck('id')->toArray()),
+                    ],
+                ];
+                break;
+            }
+            case 'PUT':
+            case 'PATCH':
+            {
+                $rules = [                    
+                    'template_id' => [
+                        'required',
+                        Rule::in(Template::pluck('id')->toArray()),
+                    ],
+                    'published_at' => 'required|date',
+                    'user_id' => [
+                        'required',
+                        Rule::in(User::employee()->pluck('id')->toArray()),
+                    ],
+                ];
+            }
+            default: break;
+        }
+        
+        return $rules;         
     }
 }

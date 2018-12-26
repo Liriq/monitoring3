@@ -58,7 +58,6 @@
             </div>
         </div>   
 
-        <div class="ln_solid"></div>
         <div class="form-group">
             <div class="float-right">
                 {{ Form::submit( !empty($user->id) ? _i('Edit') : _i('Save'), ['class' => 'btn btn-success']) }}

@@ -212,3 +212,12 @@ msgstr "Answer type"
 
 msgid "Answer variants"
 msgstr "Answer variants"
+
+msgid "Published at"
+msgstr "Published at"
+
+msgid "Choose template"
+msgstr "Choose template"
+
+msgid "Choose employee"
+msgstr "Choose employee"

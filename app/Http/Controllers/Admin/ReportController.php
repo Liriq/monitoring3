@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Entities\Report;
+use App\Entities\Template;
+use App\Entities\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ReportRequest;
 
@@ -28,7 +30,9 @@ class ReportController extends Controller
     public function create()
     {
         return view('admin.reports.create', [
-            'report' => new Report(),           
+            'report' => new Report(),
+            'templates' => Template::with('questions')->get(),
+            'employees' => User::employee()->get()->pluck('fullName', 'id'),   
         ]);
     }
 
@@ -41,6 +45,7 @@ class ReportController extends Controller
     public function store(ReportRequest $request)
     {
         $post = $request->all();
+        $post['name'] = Template::find($post['template_id'])->name;
         $report = new Report;        
         if ($report->fill($post) && $report->save()) {
                         
@@ -70,7 +75,9 @@ class ReportController extends Controller
     public function edit(Report $report)
     {
         return view('admin.reports.edit', [
-            'report' => $report,          
+            'report' => $report,    
+            'templates' => Template::with('questions')->get(),   
+            'employees' => User::employee()->get()->pluck('fullName', 'id'),       
         ]);
     }
 
@@ -83,7 +90,8 @@ class ReportController extends Controller
      */
     public function update(ReportRequest $request, Report $report)
     {
-        $post = $request->all();        
+        $post = $request->all();
+        $post['name'] = Template::find($post['template_id'])->name;        
         if ($report->update($post)){
             
             return redirect()->route('admin.reports.index')->with('flash_success', _i('Data successfully updated!'));

@@ -215,3 +215,12 @@ msgstr "Тип відповіді"
 
 msgid "Answer variants"
 msgstr "Варіанти відповіді"
+
+msgid "Published at"
+msgstr "Опубліковано в"
+
+msgid "Choose template"
+msgstr "Виберіть шаблон"
+
+msgid "Choose employee"
+msgstr "Виберіть виконавця"
