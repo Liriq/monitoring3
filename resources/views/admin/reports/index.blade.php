@@ -22,6 +22,8 @@
                             <thead>
                                 <tr>
                                     <th>{{ _i('Name') }}</th>
+                                    <th>{{ _i('Employee') }}</th>
+                                    <th>{{ _i('Published at') }}</th>
                                     <th>{{ _i('Actions') }}</th>
                                 </tr>
                             </thead>
@@ -29,6 +31,8 @@
                                 @foreach($reports as $report)                                      
                                     <tr>
                                         <td>{{ $report->name }}</td>
+                                        <td>{{ $report->user->fullName }}</td>
+                                        <td>{{ $report->published_at }}</td>
                                         <td>
                                             <a href="{{ route('admin.reports.edit', $report->id) }}" class="btn btn-warning">
                                                 <i class="fas fa-edit"></i>
