@@ -9,7 +9,7 @@
                 {{ Form::label('input_name', _i('Name'), ['class' => 'form-control-label']) }}
             </div>
             <div class="col-12 col-md-9">
-                {{ Form::text("name", $setting->name, ["class" => "form-control", "placeholder" => _i('Name'), "id"=>"input_name", 'required' => 'required']) }}
+                {{ Form::text("name", $setting->name, ["class" => "form-control", "placeholder" => _i('Name'), "id"=>"input_name", 'required' => 'required', 'disabled' => !empty($setting->id) ? true : false]) }}
             </div>
         </div>
         

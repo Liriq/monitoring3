@@ -100,8 +100,12 @@ class SettingController extends Controller
      */
     public function destroy(Setting $setting)
     {
-        $setting->delete();
+        if (empty(Setting::ALL_NAMES[$setting->name])) {
+            $setting->delete();
 
-        return redirect()->route('admin.settings.index')->with('flash_success', _i('Data successfully deleted!'));
+            return redirect()->route('admin.settings.index')->with('flash_success', _i('Data successfully deleted!'));
+        }
+        
+        return redirect()->back()->withInput()->with('flash_danger', _i('You cannot delete this data!'));
     }
 }

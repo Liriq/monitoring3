@@ -22,6 +22,8 @@
                             <thead>
                                 <tr>
                                     <th>{{ _i('Name') }}</th>
+                                    <th>{{ _i('Value') }}</th>
+                                    <th>{{ _i('Description') }}</th>
                                     <th>{{ _i('Actions') }}</th>
                                 </tr>
                             </thead>
@@ -29,6 +31,8 @@
                                 @foreach($settings as $setting)                                      
                                     <tr>
                                         <td>{{ $setting->name }}</td>
+                                        <td>{{ $setting->value }}</td>
+                                        <td>{{ $setting->description }}</td>
                                         <td>
                                             <a href="{{ route('admin.settings.edit', $setting->id) }}" class="btn btn-warning">
                                                 <i class="fas fa-edit"></i>
@@ -50,6 +54,7 @@
         </div> 
     </div><!-- .animated -->
 </div><!-- .content -->
+
 @endsection
 
 
