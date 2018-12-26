@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Entities\Template;
+use App\Entities\TemplateQuestion;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TemplateRequest;
 
@@ -86,6 +87,7 @@ class TemplateController extends Controller
     {
         $post = $request->except(['questions']);       
         if ($template->update($post)){
+            $this->deleteQuestions($template, $request->input('questions.*.id'));
             $template->createOrUpdateQuestions($request->questions);
             
             return redirect()->route('admin.templates.index')->with('flash_success', _i('Data successfully updated!'));
@@ -105,5 +107,14 @@ class TemplateController extends Controller
         $template->delete();
 
         return redirect()->route('admin.templates.index')->with('flash_success', _i('Data successfully deleted!'));
+    }
+    
+    private function deleteQuestions($template, $requestQuestions)
+    {
+        $currentIds = $template->questions->pluck('id')->toArray();
+        $questionsIds = array_diff($currentIds, $requestQuestions);
+        if (!empty($questionsIds)) {
+            $template->questions()->whereIn('id', $questionsIds)->delete();
+        }     
     }
 }

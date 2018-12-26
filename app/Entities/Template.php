@@ -52,5 +52,10 @@ class Template extends Model
     public function createQuestion($question) {
         $this->questions()->create($question);
     }
+    
+    public function getDeletedQuestionsIds($questions)
+    {
+        return array_values(array_diff($this->questions->pluck('id')->toArray(), $questions));
+    }
         
 }

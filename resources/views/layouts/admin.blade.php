@@ -60,7 +60,7 @@
     <!-- Right Panel -->    
     
     <script src="/js/admin/app.js" ></script>
-    <script src="/js/admin/layout.js" ></script>
+    <script type="text/javascript" src="/js/admin/layout.js" ></script>
     @stack('scripts')
 </body>
 
