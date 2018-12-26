@@ -12,7 +12,7 @@
             <div class="card-header">
                 <strong>{{ _i('Edit template') }}</strong>
             </div>
-            <div class="card-body card-block">
+            <div id="template-block" class="card-body card-block">
                  @include('admin.templates._form')                 
             </div>
         </div>

@@ -26,7 +26,7 @@ class CreateMainTables extends Migration
                             ->onDelete('cascade');
             $table->string('question');
             $table->string('hint')->nullable();
-            $table->boolean('is_required')->default(true);
+            $table->boolean('is_required')->default(false);
             $table->string('answer_type')->default('text');
             $table->json('answer_variants')->nullable();
             $table->timestamps();

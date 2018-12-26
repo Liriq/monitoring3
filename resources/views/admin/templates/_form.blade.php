@@ -12,8 +12,25 @@
                 {{ Form::text("name", $template->name, ["class" => "form-control", "placeholder" => _i('Name'), "id"=>"input_name", 'required' => 'required']) }}
             </div>
         </div>
-
-        <div class="ln_solid"></div>
+        
+        
+        <hr/>
+        <h3 class="margin-bottom-1">{{ _i('Questions') }}:</h3>
+        <div class="form-group">
+            <button class="btn btn-warning" @click="addNewQuestion">{{ _i('Add question') }} <i class="fas fa-plus-circle"></i></button>
+        </div>
+        <div id="questions-block">
+            <template-question
+                v-for="(question, index) in questions"
+                v-bind:key="index"
+                v-bind:number="index"
+                v-bind:question="question"
+                v-bind:translations="translations"
+                v-on:remove="questions.splice(index, 1)"
+            >
+            </template-question>
+        </div>
+        
         <div class="form-group">
             <div class="float-right">
                 {{ Form::submit( !empty($template->id) ? _i('Edit') : _i('Save'), ['class' => 'btn btn-success']) }}
@@ -23,3 +40,17 @@
             </div>
         </div>
 {{ Form::close() }}
+
+@push('scripts')
+    <script>
+        var translations = {
+            question: '{{ _i("Question") }}',
+            hint: '{{ _i("Hint") }}',
+            required_field: '{{ _i("Required field") }}',
+            answer_type: '{{ _i("Answer type") }}',
+            answer_variants: '{{ _i("Answer variants") }}',
+        };
+        var questions = {!! $template->questions->toJson() !!};
+    </script>
+    <script src="/js/admin/templates.js" ></script>
+@endpush

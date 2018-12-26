@@ -1,7 +1,7 @@
-.float-right {
-    float: right;
-}
-
 .margin-bottom-1 {
     margin-bottom: 1%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }

@@ -30,6 +30,10 @@ class TemplateRequest extends FormRequest
             {
                 $rules = [                    
                     'name' => 'required|string|max:255|unique:templates,name',
+                    'questions' => 'required|array',
+                    'questions.*.question' => 'required|string|max:255',
+                    'questions.*.hint' => 'nullable|string|max:255',
+                    'questions.*.is_required' => 'nullable|numeric|in:1',
                 ];
                 break;
             }
@@ -38,6 +42,10 @@ class TemplateRequest extends FormRequest
             {
                 $rules = [                    
                     'name' => 'required|string|max:255|unique:templates,name,'.$this->id,
+                    'questions' => 'required|array',
+                    'questions.*.question' => 'required|string|max:255',
+                    'questions.*.hint' => 'nullable|string|max:255',
+                    'questions.*.is_required' => 'nullable|numeric|in:1',
                 ];
             }
             default: break;

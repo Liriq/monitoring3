@@ -14,7 +14,7 @@ class TemplateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         return view('admin.templates.index', [
             'templates' => Template::get(),
         ]);
@@ -40,10 +40,11 @@ class TemplateController extends Controller
      */
     public function store(TemplateRequest $request)
     {
-        $post = $request->all();
+        $post = $request->except(['questions']);
         $template = new Template;        
         if ($template->fill($post) && $template->save()) {
-                        
+            $template->createOrUpdateQuestions($request->questions);
+        
             return redirect()->route('admin.templates.index')->with('flash_success', _i('Data saved successfully!'));
         }
         
@@ -83,8 +84,9 @@ class TemplateController extends Controller
      */
     public function update(TemplateRequest $request, Template $template)
     {
-        $post = $request->all();        
+        $post = $request->except(['questions']);       
         if ($template->update($post)){
+            $template->createOrUpdateQuestions($request->questions);
             
             return redirect()->route('admin.templates.index')->with('flash_success', _i('Data successfully updated!'));
         }
