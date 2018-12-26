@@ -167,3 +167,48 @@ msgstr "Value"
 
 msgid "Description"
 msgstr "Description"
+
+msgid "You cannot delete this data!"
+msgstr "You cannot delete this data!"
+
+msgid "text"
+msgstr "text"
+
+msgid "boolean"
+msgstr "boolean"
+
+msgid "date"
+msgstr "date"
+
+msgid "datetime"
+msgstr "datetime"
+
+msgid "number"
+msgstr "number"
+
+msgid "select"
+msgstr "select"
+
+msgid "multiselect"
+msgstr "multiselect"
+
+msgid "Add question"
+msgstr "Add question"
+
+msgid "Question"
+msgstr "Question"
+
+msgid "Questions"
+msgstr "Questions"
+
+msgid "Hint"
+msgstr "Hint"
+
+msgid "Required field"
+msgstr "Required field"
+
+msgid "Answer type"
+msgstr "Answer type"
+
+msgid "Answer variants"
+msgstr "Answer variants"

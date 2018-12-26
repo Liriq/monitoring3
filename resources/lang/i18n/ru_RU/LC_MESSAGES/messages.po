@@ -167,3 +167,48 @@ msgstr "Значение"
 
 msgid "Description"
 msgstr "Описание"
+
+msgid "You cannot delete this data!"
+msgstr "Вы не можете удалить эти данные!"
+
+msgid "text"
+msgstr "текст"
+
+msgid "boolean"
+msgstr "так чи ні"
+
+msgid "date"
+msgstr "дата"
+
+msgid "datetime"
+msgstr "дата та час"
+
+msgid "number"
+msgstr "число"
+
+msgid "select"
+msgstr "вибір з кількох варіантів"
+
+msgid "multiselect"
+msgstr "множинний вибір з кількох варіантів"
+
+msgid "Add question"
+msgstr "Добавить вопрос"
+
+msgid "Question"
+msgstr "Вопрос"
+
+msgid "Questions"
+msgstr "Вопросы"
+
+msgid "Hint"
+msgstr "Подсказка"
+
+msgid "Required field"
+msgstr "Обязательное поле"
+
+msgid "Answer type"
+msgstr "Тип ответа"
+
+msgid "Answer variants"
+msgstr "Варианты ответов"
