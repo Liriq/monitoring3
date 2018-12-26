@@ -11,15 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/lang/{locale?}', [
-    'as'=>'lang',
-    'uses'=>'HomeController@changeLang'
-]);
+Route::middleware(['auth'])->group(function () {
+    Route::redirect('/', '/admin');
+
+    Route::get('/lang/{locale?}', [
+        'as'=>'lang',
+        'uses'=>'HomeController@changeLang'
+    ]);  
+});
+
