@@ -8,6 +8,10 @@ class Setting extends Model
 {
     const REPORT_DEADLINE = 'report_deadline';
     
+    const ALL_NAMES = [
+        self::REPORT_DEADLINE => self::REPORT_DEADLINE,
+    ];
+    
     /**
      * The attributes that are mass assignable.
      *

@@ -3,9 +3,28 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TemplateQuestion extends Model
 {
+    
+    const TYPE_TEXT = 'text';
+    const TYPE_BOOLEAN = 'boolean';
+    const TYPE_DATE = 'date';
+    const TYPE_DATETIME = 'datetime';
+    const TYPE_NUMBER = 'number';
+    const TYPE_SELECT = 'select';
+    const TYPE_MULTISELECT = 'multiselect';
+    
+    const ALL_TYPES = [
+        self::TYPE_TEXT => self::TYPE_TEXT,
+        self::TYPE_BOOLEAN => self::TYPE_BOOLEAN,
+        self::TYPE_DATE => self::TYPE_DATE,
+        self::TYPE_DATETIME => self::TYPE_DATETIME,
+        self::TYPE_NUMBER => self::TYPE_NUMBER,
+        self::TYPE_SELECT => self::TYPE_SELECT,
+        self::TYPE_MULTISELECT => self::TYPE_MULTISELECT,
+    ];
     
     /**
      * The attributes that are mass assignable.
@@ -20,6 +39,7 @@ class TemplateQuestion extends Model
     protected $casts = [
         'template_id' => 'integer',
         'is_required' => 'boolean',
+        'answer_variants' => 'array',
     ];
     
     /**

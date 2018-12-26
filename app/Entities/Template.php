@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Template extends Model
 {
@@ -30,6 +31,26 @@ class Template extends Model
     public function reports(): HasMany
     {
         return $this->hasMany(Report::class);
+    }
+    
+    public function createOrUpdateQuestions($questions)
+    {
+        if ($this->questions->isEmpty()) {
+            $this->questions()->createMany($questions);
+        } else {
+            array_where($questions, function ($question, $key) {
+                if (empty($question['id'])) {
+                    $this->createQuestion($question);
+                } else {
+                    $question['is_required'] = $question['is_required'] ?? false;
+                    $this->questions()->where('id', $question['id'])->update($question);
+                }
+            });            
+        }
+    }
+    
+    public function createQuestion($question) {
+        $this->questions()->create($question);
     }
         
 }
