@@ -32,7 +32,7 @@ class UserController extends Controller
     {
         return view('admin.users.create', [
             'user' => new User(),
-            'roles' => Role::pluck('name', 'id'),
+            'roles' => Role::get(['name', 'id']),
             'templates' => Template::pluck('name', 'id'),            
         ]);
     }
@@ -81,7 +81,7 @@ class UserController extends Controller
     {
         return view('admin.users.edit', [
             'user' => $user,
-            'roles' => Role::pluck('name', 'id'),
+            'roles' => Role::get(['name', 'id']),
             'templates' => Template::pluck('name', 'id'),           
         ]);
     }

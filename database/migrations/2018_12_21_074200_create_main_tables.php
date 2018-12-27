@@ -77,6 +77,7 @@ class CreateMainTables extends Migration
         
         Schema::table('users', function (Blueprint $table) {
             $table->string('lastname')->after('name')->nullable();
+            $table->unsignedInteger('template_id')->after('email')->nullable();
         });   
     }
 

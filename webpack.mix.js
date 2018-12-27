@@ -49,11 +49,13 @@ mix.js('resources/js/admin/app.js', 'public/js/admin')
             nodeDir + '/datatables.net-buttons/js/buttons.html5.min.js',
             nodeDir + '/datatables.net-buttons/js/buttons.print.min.js',
             nodeDir + '/datatables.net-buttons/js/buttons.colVis.min.js',
-            'resources/js/admin/layout-main.js',          
+            nodeDir + '/select2/dist/js/select2.full.min.js',
+            'resources/js/admin/layout-main.js',        
+            'resources/js/admin/common.js',        
         ], 
         'public/js/admin/layout.js'
     )
-    .sass('resources/sass/app.scss', 'public/css')    
+    .sass('resources/sass/app.scss', 'public/css')
     .styles(
         [
             'resources/libraries/fontawesome/css/all.css',
@@ -61,6 +63,7 @@ mix.js('resources/js/admin/app.js', 'public/js/admin')
             nodeDir + '/selectFX/css/cs-skin-elastic.css',
             nodeDir + '/datatables.net-bs4/css/dataTables.bootstrap4.min.css',
             nodeDir + '/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
+            nodeDir + '/select2/dist/css/select2.min.css',
             'resources/css/admin/googleapis.css',
             'resources/css/admin/style.css',
             'resources/css/admin/common.css',
@@ -69,4 +72,6 @@ mix.js('resources/js/admin/app.js', 'public/js/admin')
     )
     .copyDirectory('resources/libraries/fontawesome/webfonts', 'public/css/webfonts')
     .copyDirectory('resources/images', 'public/images')
-    .js('resources/js/admin/templates.js', 'public/js/admin/templates.js');
+    .js('resources/js/admin/users.js', 'public/js/admin/users.js')
+    .js('resources/js/admin/templates.js', 'public/js/admin/templates.js')
+    .js('resources/js/admin/reports.js', 'public/js/admin/reports.js');

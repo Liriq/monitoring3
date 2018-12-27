@@ -221,3 +221,6 @@ msgstr "Choose template"
 
 msgid "Choose employee"
 msgstr "Choose employee"
+
+msgid "Personal data"
+msgstr "Personal data"

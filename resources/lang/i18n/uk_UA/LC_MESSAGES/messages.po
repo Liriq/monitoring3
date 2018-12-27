@@ -224,3 +224,6 @@ msgstr "Виберіть шаблон"
 
 msgid "Choose employee"
 msgstr "Виберіть виконавця"
+
+msgid "Personal data"
+msgstr "Особисті дані"

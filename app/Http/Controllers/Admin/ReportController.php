@@ -32,7 +32,7 @@ class ReportController extends Controller
         return view('admin.reports.create', [
             'report' => new Report(),
             'templates' => Template::with('questions')->get(),
-            'employees' => User::employee()->get()->pluck('fullName', 'id'),   
+            'employeesByTemplate' => User::employee()->get(['id', 'name', 'lastname', 'template_id'])->groupBy('template_id'),   
         ]);
     }
 
@@ -77,7 +77,7 @@ class ReportController extends Controller
         return view('admin.reports.edit', [
             'report' => $report,    
             'templates' => Template::with('questions')->get(),   
-            'employees' => User::employee()->get()->pluck('fullName', 'id'),       
+            'employeesByTemplate' => User::employee()->get(['id', 'name', 'lastname', 'template_id'])->groupBy('template_id'),        
         ]);
     }
 

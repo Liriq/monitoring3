@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'lastname', 'email',
+        'name', 'lastname', 'email', 'template_id'
     ];
 
     /**
@@ -30,6 +30,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    /** @var array $casts */
+    protected $casts = [
+        'template_id' => 'integer',
+    ];    
     
     public function scopeEmployee($q)
     {

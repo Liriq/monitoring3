@@ -5,29 +5,38 @@
         @endif   
         
         <div class="row form-group">
-            <div class="col col-md-2">
+            <div class="col col-md-3">
                 {{ Form::label('template_id', _i('Template'), ['class' => 'form-control-label']) }}
             </div>
-            <div class="col-2 col-md-2">
-                {{ Form::select("template_id", $templates->pluck('name', 'id'), null, ["class" => "form-control", 'required' => 'required', 'placeholder' => _i('Choose template')]) }}
+            <div class="col-12 col-md-9">
+                {{ Form::select("template_id", $templates->pluck('name', 'id'), null, ["class" => "form-control", 'required' => 'required', 'placeholder' => _i('Choose template'), "v-on:change"=>"showEmployees", "v-model"=>"selectedTemplateId"]) }}
             </div>
-        </div>
+        </div>       
         
         <div class="row form-group">
-            <div class="col col-md-2">
-                {{ Form::label('user_id', _i('Employee'), ['class' => 'form-control-label']) }}
+            <div class="col col-md-3">
+                {{ Form::label('published_at', _i('Published at'), ['class' => 'form-control-label']) }}
             </div>
-            <div class="col-2 col-md-2">
-                {{ Form::select("user_id", $employees, null, ["class" => "form-control", 'required' => 'required', 'placeholder' => _i('Choose employee')]) }}
+            <div class="col-12 col-md-9">
+                {{ Form::date("published_at", $report->published_at, ["class" => "form-control ", 'required' => 'required']) }}
             </div>
         </div>        
         
-        <div class="row form-group">
-            <div class="col col-md-2">
-                {{ Form::label('published_at', _i('Published at'), ['class' => 'form-control-label']) }}
+        <div class="row form-group" v-show="isShowEmployees">
+            <div class="col col-md-3">
+                {{ Form::label('user_id', _i('Employee'), ['class' => 'form-control-label']) }}
             </div>
-            <div class="col-2 col-md-2">
-                {{ Form::date("published_at", null, ["class" => "form-control", 'required' => 'required']) }}
+            <div class="col-12 col-md-9">
+                <select 
+                    v-bind:disabled="!isShowEmployees"
+                    v-model="selectedEmployeeId" 
+                    class="form-control" 
+                    name="user_id" 
+                    required
+                >
+                    <option value="" selected="selected">{{ _i('Choose employee') }}</option>
+                    <option v-for="employee in employees" v-bind:value="employee.id" v-text="employee.name + ' ' + employee.lastname"></option>
+                </select> 
             </div>
         </div>
         
@@ -40,3 +49,12 @@
             </div>
         </div>
 {{ Form::close() }}
+
+@push('scripts')
+    <script>
+        var selectedEmployeeId = '{{ optional($report)->user_id }}';
+        var selectedTemplateId = '{{ optional($report->template)->id }}';
+        var employeesByTemplate = {!! $employeesByTemplate->toJson() !!};          
+    </script>
+    <script src="/js/admin/reports.js" ></script>
+@endpush

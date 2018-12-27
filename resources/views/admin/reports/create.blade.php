@@ -12,7 +12,7 @@
             <div class="card-header">
                 <strong>{{ _i('Create report') }}</strong>
             </div>
-            <div class="card-body card-block">
+            <div class="card-body card-block" id="report-form-block">
                  @include('admin.reports._form')                 
             </div>
         </div>
