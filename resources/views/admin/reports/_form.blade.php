@@ -32,8 +32,7 @@
                     v-model="selectedEmployeeId" 
                     class="form-control" 
                     name="user_id" 
-                    required
-                >
+                    required>
                     <option value="" selected="selected">{{ _i('Choose employee') }}</option>
                     <option v-for="employee in employees" v-bind:value="employee.id" v-text="employee.name + ' ' + employee.lastname"></option>
                 </select> 

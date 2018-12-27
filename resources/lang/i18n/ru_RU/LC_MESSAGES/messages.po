@@ -175,22 +175,22 @@ msgid "text"
 msgstr "текст"
 
 msgid "boolean"
-msgstr "так чи ні"
+msgstr "да или нет"
 
 msgid "date"
 msgstr "дата"
 
 msgid "datetime"
-msgstr "дата та час"
+msgstr "дата и время"
 
 msgid "number"
-msgstr "число"
+msgstr "цифра"
 
 msgid "select"
-msgstr "вибір з кількох варіантів"
+msgstr "выбор из нескольких вариантов"
 
 msgid "multiselect"
-msgstr "множинний вибір з кількох варіантів"
+msgstr "множественный выбор из нескольких вариантов"
 
 msgid "Add question"
 msgstr "Добавить вопрос"
@@ -224,3 +224,9 @@ msgstr "Выберите исполнителя"
 
 msgid "Personal data"
 msgstr "Личные данные"
+
+msgid "Choose answer type"
+msgstr "Выберите тип ответа"
+
+msgid "Type your answer and press Enter"
+msgstr "Введите вариант ответа и нажмите Enter"

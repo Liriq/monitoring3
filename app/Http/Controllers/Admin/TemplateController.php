@@ -29,7 +29,8 @@ class TemplateController extends Controller
     public function create()
     {
         return view('admin.templates.create', [
-            'template' => new Template(),           
+            'template' => new Template(),
+            'answerTypes' => TemplateQuestion::ALL_TYPES,          
         ]);
     }
 
@@ -72,7 +73,8 @@ class TemplateController extends Controller
     public function edit(Template $template)
     {
         return view('admin.templates.edit', [
-            'template' => $template,          
+            'template' => $template,
+            'answerTypes' => TemplateQuestion::ALL_TYPES, 
         ]);
     }
 
@@ -85,7 +87,7 @@ class TemplateController extends Controller
      */
     public function update(TemplateRequest $request, Template $template)
     {
-        $post = $request->except(['questions']);       
+        $post = $request->except(['questions']);
         if ($template->update($post)){
             $this->deleteQuestions($template, $request->input('questions.*.id'));
             $template->createOrUpdateQuestions($request->questions);

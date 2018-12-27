@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "@icon/themify-icons": "^1.0.1",
+        "@voerro/vue-tagsinput": "^1.11.1",
         "animate.css": "^3.7.0",
         "axios": "^0.18",
         "bootstrap": "^4.0.0",

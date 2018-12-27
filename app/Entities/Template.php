@@ -43,6 +43,7 @@ class Template extends Model
                     $this->createQuestion($question);
                 } else {
                     $question['is_required'] = $question['is_required'] ?? false;
+                    $question['answer_variants'] = json_encode($question['answer_variants']);
                     $this->questions()->where('id', $question['id'])->update($question);
                 }
             });            

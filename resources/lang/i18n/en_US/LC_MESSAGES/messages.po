@@ -224,3 +224,9 @@ msgstr "Choose employee"
 
 msgid "Personal data"
 msgstr "Personal data"
+
+msgid "Choose answer type"
+msgstr "Choose answer type"
+
+msgid "Type your answer and press Enter"
+msgstr "Type your answer and press Enter"

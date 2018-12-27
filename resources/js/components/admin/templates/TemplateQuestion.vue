@@ -26,7 +26,7 @@
         
         <div class="row form-group">
             <div class="col col-md-3">
-                <label :for="'questions[' + number + '][is_required]'" class="form-control-label" v-html="translations.required_field"></label>
+                <label :for="'questions[' + number + '][is_required]'" class="form-control-label" v-html="translations.requiredField"></label>
             </div>
             <div class="col-12 col-md-9">
                 <label class="switch switch-default switch-pill switch-warning mr-2">
@@ -34,12 +34,43 @@
                     <span class="switch-label"></span> <span class="switch-handle"></span>
                 </label>
             </div>
-        </div>                  
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label :for="'questions[' + number + '][answer_type]'" class="form-control-label" v-html="translations.answerType"></label>
+            </div>
+            <div class="col-12 col-md-9">
+                <select
+                    class="form-control" 
+                    :name="'questions[' + number + '][answer_type]'" 
+                    v-model="question.answer_type"
+                    :selected="question.answer_type ? question.answer_type : 0"
+                    required>
+                    <option v-for="(answer_type, key) in answer_types" v-bind:value="key" v-text="translations.answerTypes[answer_type]"></option>
+                </select> 
+            </div>
+        </div>           
+        
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label :for="'questions[' + number + '][answer_variants]'" class="form-control-label">{{translations.answerVariants}}</label>
+            </div>
+            <div class="col-12 col-md-9">                    
+                <tags-input
+                    :element-id="'questions[' + number + '][answer_variants]'"
+                    :placeholder="translations.typeAnswerVariants"
+                    v-model="question.answer_variants"
+                    :typeahead="true">
+                </tags-input>                    
+            </div>
+        </div>               
+                        
     </div>
 </template>
 
 <script>
     export default {
-        props: ['question', 'translations', 'number'],
+        props: ['question', 'translations', 'number', 'answer_types'],
     }
 </script>

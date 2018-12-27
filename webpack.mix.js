@@ -64,6 +64,7 @@ mix.js('resources/js/admin/app.js', 'public/js/admin')
             nodeDir + '/datatables.net-bs4/css/dataTables.bootstrap4.min.css',
             nodeDir + '/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css',
             nodeDir + '/select2/dist/css/select2.min.css',
+            nodeDir + '/@voerro/vue-tagsinput/dist/style.css',
             'resources/css/admin/googleapis.css',
             'resources/css/admin/style.css',
             'resources/css/admin/common.css',

@@ -23,6 +23,7 @@
             <template-question
                 v-for="(question, index) in questions"
                 v-bind:key="index"
+                v-bind:answer_types="answer_types"
                 v-bind:number="index"
                 v-bind:question="question"
                 v-bind:translations="translations"
@@ -44,13 +45,24 @@
 @push('scripts')
     <script>
         var translations = {
-            question: '{{ _i("Question") }}',
-            hint: '{{ _i("Hint") }}',
-            required_field: '{{ _i("Required field") }}',
-            answer_type: '{{ _i("Answer type") }}',
-            answer_variants: '{{ _i("Answer variants") }}',
-        };
+                question: '{{ _i("Question") }}',
+                hint: '{{ _i("Hint") }}',
+                requiredField: '{{ _i("Required field") }}',
+                answerType: '{{ _i("Answer type") }}',
+                chooseAnswerType: '{{ _i("Choose answer type") }}',
+                answerVariants: '{{ _i("Answer variants") }}',
+                typeAnswerVariants: '{{ _i("Type your answer and press Enter") }}',
+                answerTypes: {
+                    text: '{{ _i("text") }}',
+                    boolean: '{{ _i("boolean") }}',
+                    date: '{{ _i("date") }}',
+                    number: '{{ _i("number") }}',
+                    select: '{{ _i("select") }}',
+                    multiselect: '{{ _i("multiselect") }}',
+                },
+            };
         var questions = {!! $template->questions->toJson() !!};
+        var answerTypes = {!! json_encode($answerTypes) !!};
     </script>
     <script src="/js/admin/templates.js" ></script>
 @endpush

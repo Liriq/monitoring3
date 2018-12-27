@@ -19,6 +19,10 @@ if (typeof jQuery === 'undefined') {
     throw new Error('Admin layout requires jQuery');
 }
 
+import VoerroTagsInput from '@voerro/vue-tagsinput';
+
+Vue.component('tags-input', VoerroTagsInput);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
