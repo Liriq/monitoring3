@@ -21,6 +21,7 @@ class ReportAnswer extends Model
     protected $casts = [
         'report_id' => 'integer',
         'is_required' => 'boolean',
+        'answer_variants' => 'array',
     ];
     
     /** @var array $dates */

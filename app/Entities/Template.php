@@ -40,7 +40,7 @@ class Template extends Model
         } else {
             array_where($questions, function ($question, $key) {
                 if (empty($question['id'])) {
-                    $this->createQuestion($question);
+                    $this->questions()->create($question);
                 } else {
                     $question['is_required'] = $question['is_required'] ?? false;
                     $question['answer_variants'] = json_encode($question['answer_variants']);
@@ -48,15 +48,6 @@ class Template extends Model
                 }
             });            
         }
-    }
-    
-    public function createQuestion($question) {
-        $this->questions()->create($question);
-    }
-    
-    public function getDeletedQuestionsIds($questions)
-    {
-        return array_values(array_diff($this->questions->pluck('id')->toArray(), $questions));
     }
         
 }

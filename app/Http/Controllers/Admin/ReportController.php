@@ -33,8 +33,8 @@ class ReportController extends Controller
     {
         return view('admin.reports.create', [
             'report' => new Report(),
-            'templates' => Template::with('questions')->get(),
-            'employeesByTemplate' => User::employee()->get(['id', 'name', 'lastname', 'template_id'])->groupBy('template_id'),   
+            'templates' => Template::get(['name', 'id']),
+            'employeesByTemplate' => User::employee()->get(['id', 'name', 'lastname', 'template_id'])->groupBy('template_id'),
             'questionsByTemplate' => TemplateQuestion::get()->groupBy('template_id'),   
             'answerTypes' => TemplateQuestion::ALL_TYPES, 
         ]);
@@ -48,14 +48,11 @@ class ReportController extends Controller
      */
     public function store(ReportRequest $request)
     {
-        $post = $request->all();
-        dd(
-            $post
-        );
+        $post = $request->except(['answers']);
         $post['name'] = Template::find($post['template_id'])->name;
         $report = new Report;        
         if ($report->fill($post) && $report->save()) {
-                        
+            $report->createOrUpdateAnswers($request->answers);            
             return redirect()->route('admin.reports.index')->with('flash_success', _i('Data saved successfully!'));
         }
         
@@ -83,8 +80,10 @@ class ReportController extends Controller
     {
         return view('admin.reports.edit', [
             'report' => $report,    
-            'templates' => Template::with('questions')->get(),   
-            'employeesByTemplate' => User::employee()->get(['id', 'name', 'lastname', 'template_id'])->groupBy('template_id'),        
+            'templates' => Template::get(['name', 'id']),   
+            'employeesByTemplate' => User::employee()->get(['id', 'name', 'lastname', 'template_id'])->groupBy('template_id'),
+            'questionsByTemplate' => TemplateQuestion::get()->groupBy('template_id'),   
+            'answerTypes' => TemplateQuestion::ALL_TYPES,        
         ]);
     }
 
@@ -97,10 +96,11 @@ class ReportController extends Controller
      */
     public function update(ReportRequest $request, Report $report)
     {
-        $post = $request->all();
+        $post = $request->except(['answers']);
         $post['name'] = Template::find($post['template_id'])->name;        
-        if ($report->update($post)){
-            
+        if ($report->update($post)) {
+            $this->deleteAnswers($report, $request->input('answers.*.id'));
+            $report->createOrUpdateAnswers($request->answers);
             return redirect()->route('admin.reports.index')->with('flash_success', _i('Data successfully updated!'));
         }
         
@@ -133,4 +133,14 @@ class ReportController extends Controller
         
         return $answers->toJson();
     }
+    
+    private function deleteAnswers($report, $requestAnswers)
+    {
+        $currentIds = $report->answers->pluck('id')->toArray();
+        $answersIds = array_diff($currentIds, $requestAnswers);
+        if (!empty($answersIds)) {
+            $report->answers()->whereIn('id', $answersIds)->delete();
+        }     
+    }    
+    
 }

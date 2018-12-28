@@ -9,7 +9,7 @@
                 {{ Form::label('template_id', _i('Template'), ['class' => 'form-control-label']) }}
             </div>
             <div class="col-12 col-md-9">
-                {{ Form::select("template_id", $templates->pluck('name', 'id'), null, ["class" => "form-control", 'required' => 'required', 'placeholder' => _i('Choose template'), "v-on:change"=>"showBlocks", "v-model"=>"selectedTemplateId"]) }}
+                {{ Form::select("template_id", $templates->pluck('name', 'id'), null, ["class" => "form-control", 'required' => 'required', 'placeholder' => _i('Choose template'), "v-on:change"=>"showBlocks", "v-model"=>"selectedTemplateId", "v-bind:readonly"=>"isDisabled"]) }}
             </div>
         </div>       
         
@@ -27,8 +27,7 @@
                 {{ Form::label('user_id', _i('Employee'), ['class' => 'form-control-label']) }}
             </div>
             <div class="col-12 col-md-9">
-                <select 
-                    v-bind:disabled="!isShowBlocks"
+                <select
                     v-model="selectedEmployeeId" 
                     class="form-control" 
                     name="user_id" 
@@ -42,6 +41,7 @@
         <div id="questions-block" v-show="isShowBlocks">
             <template-question
                 v-for="(answer, index) in answers"
+                v-bind:is_disabled="isDisabled"
                 v-bind:key="index"
                 v-bind:answer_types="answerTypes"
                 v-bind:number="index"
@@ -64,7 +64,7 @@
 
 @push('scripts')
     <script>
-        var report = '{!! $report->toJson !!}';
+        var report = {!! $report->toJson() !!};
         var employeesByTemplate = {!! $employeesByTemplate->toJson() !!};        
         var questionsByTemplate = {!! $questionsByTemplate->toJson() !!};
         var answerTypes = {!! json_encode($answerTypes) !!};  

@@ -8,22 +8,19 @@ new Vue({
         selectedTemplateId: report.template_id,
         isShowBlocks: false,
         employeesByTemplate: employeesByTemplate,
-        employees: [
-            
-        ], 
-        answers: [
-            
-        ],
+        employees: [], 
+        answers: [],
         questionsByTemplate: questionsByTemplate,
         translations: translations,
-        answerTypes: answerTypes,           
+        answerTypes: answerTypes,
+        isDisabled: (report.id > 0)           
     },
     methods: {
         showBlocks: function () {
             if (this.selectedTemplateId) {       
                 this.loadEmployees();  
                 this.loadAnswers();  
-                this.isShowBlocks = true;              
+                this.isDisabled = this.isShowBlocks = true;              
             } else {
                 this.isShowBlocks = false;
             }
@@ -34,10 +31,8 @@ new Vue({
         },
         loadAnswers: function () {
             var body = {report_id: this.report.id, template_id: this.selectedTemplateId}
-            console.log('body', body)
             axios.post('/admin/reports/get-answers', body)
             .then (response => {
-                console.log('response', response.data)
                 this.answers = response.data;
             })
             .catch (e => {
@@ -50,7 +45,7 @@ new Vue({
         if (this.selectedTemplateId) {
             this.loadEmployees();
             this.loadAnswers();
-            this.isShowBlocks = true; 
+            this.isDisabled = this.isShowBlocks = true; 
         }        
     }    
 })
