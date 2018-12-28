@@ -233,3 +233,6 @@ msgstr "Виберіть тип відповіді"
 
 msgid "Type your answer and press Enter"
 msgstr "Введіть варіант відповіді і натисніть Enter"
+
+msgid "Answer"
+msgstr "Відповідь"

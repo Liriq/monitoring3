@@ -230,3 +230,6 @@ msgstr "Выберите тип ответа"
 
 msgid "Type your answer and press Enter"
 msgstr "Введите вариант ответа и нажмите Enter"
+
+msgid "Answer"
+msgstr "Ответ"

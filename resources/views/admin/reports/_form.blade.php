@@ -9,7 +9,7 @@
                 {{ Form::label('template_id', _i('Template'), ['class' => 'form-control-label']) }}
             </div>
             <div class="col-12 col-md-9">
-                {{ Form::select("template_id", $templates->pluck('name', 'id'), null, ["class" => "form-control", 'required' => 'required', 'placeholder' => _i('Choose template'), "v-on:change"=>"showEmployees", "v-model"=>"selectedTemplateId"]) }}
+                {{ Form::select("template_id", $templates->pluck('name', 'id'), null, ["class" => "form-control", 'required' => 'required', 'placeholder' => _i('Choose template'), "v-on:change"=>"showBlocks", "v-model"=>"selectedTemplateId"]) }}
             </div>
         </div>       
         
@@ -22,13 +22,13 @@
             </div>
         </div>        
         
-        <div class="row form-group" v-show="isShowEmployees">
+        <div class="row form-group" v-show="isShowBlocks">
             <div class="col col-md-3">
                 {{ Form::label('user_id', _i('Employee'), ['class' => 'form-control-label']) }}
             </div>
             <div class="col-12 col-md-9">
                 <select 
-                    v-bind:disabled="!isShowEmployees"
+                    v-bind:disabled="!isShowBlocks"
                     v-model="selectedEmployeeId" 
                     class="form-control" 
                     name="user_id" 
@@ -37,6 +37,19 @@
                     <option v-for="employee in employees" v-bind:value="employee.id" v-text="employee.name + ' ' + employee.lastname"></option>
                 </select> 
             </div>
+        </div>
+        
+        <div id="questions-block" v-show="isShowBlocks">
+            <template-question
+                v-for="(answer, index) in answers"
+                v-bind:key="index"
+                v-bind:answer_types="answerTypes"
+                v-bind:number="index"
+                v-bind:answer="answer"
+                v-bind:translations="translations"
+                v-on:remove="answers.splice(index, 1)"
+            >
+            </template-question>
         </div>
         
         <div class="form-group">
@@ -51,9 +64,28 @@
 
 @push('scripts')
     <script>
-        var selectedEmployeeId = '{{ optional($report)->user_id }}';
-        var selectedTemplateId = '{{ optional($report->template)->id }}';
-        var employeesByTemplate = {!! $employeesByTemplate->toJson() !!};          
+        var report = '{!! $report->toJson !!}';
+        var employeesByTemplate = {!! $employeesByTemplate->toJson() !!};        
+        var questionsByTemplate = {!! $questionsByTemplate->toJson() !!};
+        var answerTypes = {!! json_encode($answerTypes) !!};  
+        var translations = {
+                question: '{{ _i("Question") }}',
+                answer: '{{ _i("Answer") }}',
+                hint: '{{ _i("Hint") }}',
+                requiredField: '{{ _i("Required field") }}',
+                answerType: '{{ _i("Answer type") }}',
+                chooseAnswerType: '{{ _i("Choose answer type") }}',
+                answerVariants: '{{ _i("Answer variants") }}',
+                typeAnswerVariants: '{{ _i("Type your answer and press Enter") }}',
+                answerTypes: {
+                    text: '{{ _i("text") }}',
+                    boolean: '{{ _i("boolean") }}',
+                    date: '{{ _i("date") }}',
+                    number: '{{ _i("number") }}',
+                    select: '{{ _i("select") }}',
+                    multiselect: '{{ _i("multiselect") }}',
+                },
+            };            
     </script>
     <script src="/js/admin/reports.js" ></script>
 @endpush

@@ -1,31 +1,56 @@
+Vue.component('template-question', require('../components/admin/reports/ReportQuestion.vue').default);
+
 new Vue({
     el: '#report-form-block',
     data: {
-        selectedEmployeeId: selectedEmployeeId,
-        selectedTemplateId: selectedTemplateId,
-        isShowEmployees: (selectedEmployeeId > 0),
+        report: report,
+        selectedEmployeeId: report.user_id,
+        selectedTemplateId: report.template_id,
+        isShowBlocks: false,
         employeesByTemplate: employeesByTemplate,
         employees: [
             
-        ],    
+        ], 
+        answers: [
+            
+        ],
+        questionsByTemplate: questionsByTemplate,
+        translations: translations,
+        answerTypes: answerTypes,           
     },
     methods: {
-        showEmployees: function () {
+        showBlocks: function () {
             if (this.selectedTemplateId) {       
-                this.loadEmployees();                
+                this.loadEmployees();  
+                this.loadAnswers();  
+                this.isShowBlocks = true;              
             } else {
-                this.isShowEmployees = false;
+                this.isShowBlocks = false;
             }
         },
         loadEmployees: function () {
-            this.employees = [];
-            this.employees = $.merge(this.employeesByTemplate[this.selectedTemplateId], this.employees);
-            this.isShowEmployees = true;
+            this.employees = this.employeesByTemplate[this.selectedTemplateId];
+            
+        },
+        loadAnswers: function () {
+            var body = {report_id: this.report.id, template_id: this.selectedTemplateId}
+            console.log('body', body)
+            axios.post('/admin/reports/get-answers', body)
+            .then (response => {
+                console.log('response', response.data)
+                this.answers = response.data;
+            })
+            .catch (e => {
+                console.log('ERROR', e)
+            })
+            
         },
     },
     created: function () {
         if (this.selectedTemplateId) {
             this.loadEmployees();
+            this.loadAnswers();
+            this.isShowBlocks = true; 
         }        
     }    
 })
