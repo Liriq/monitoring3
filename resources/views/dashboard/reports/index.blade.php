@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('breadcrumbs', Breadcrumbs::render('admin-reports') )
+@section('breadcrumbs', Breadcrumbs::render('dashboard-reports') )
 
 @push('styles')
 @endpush
@@ -10,7 +10,7 @@
     <div class="animated fadeIn">
         <div class="row"> 
             <div class="col-md-12 margin-bottom-1">
-                <a href="{{ route('admin.reports.create') }}" class="btn btn-success float-right">{{ _i('Add') }}</a>  
+                <a href="{{ route('dashboard.reports.create') }}" class="btn btn-success float-right">{{ _i('Add') }}</a>  
             </div>
             <div class="col-md-12">
                 <div class="card">
@@ -36,16 +36,9 @@
                                         <td>{{ $report->user->fullName }}</td>
                                         <td>{{ $report->published_at }}</td>
                                         <td>
-                                            <a href="{{ route('admin.reports.edit', $report->id) }}" class="btn btn-warning">
+                                            <a href="{{ route('dashboard.reports.edit', $report->id) }}" class="btn btn-warning">
                                                 <i class="fas fa-edit"></i>
-                                            </a>
-                                            
-                                            
-                                            <a href="#" onclick="event.preventDefault();document.getElementById('destroy_reports_form_{{ $report->id }}').submit();" class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
-                                            {{Form::open(['id'=>'destroy_reports_form_'.$report->id, 'method'  => 'DELETE', 'route' => ['admin.reports.destroy', $report->id], 'class'=>"delete-form"])}}
-                                            {{ Form::close() }}  
+                                            </a> 
                                         </td>
                                     </tr>                                      
                                 @endforeach

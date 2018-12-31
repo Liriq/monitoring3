@@ -54,34 +54,54 @@
                     <option v-for="(answer_type, key) in answer_types" v-bind:value="key" v-text="translations.answerTypes[answer_type]"></option>
                 </select> 
             </div>
-        </div>           
+        </div>
         
-        <div class="row form-group">
-            <div class="col col-md-3">
-                <label :for="'answers[' + number + '][answer_variants]'" class="form-control-label">{{translations.answerVariants}}</label>
-            </div>
-            <div class="col-12 col-md-9">                    
-                <tags-input
-                    :element-id="'answers[' + number + '][answer_variants]'"
-                    :placeholder="translations.typeAnswerVariants"
-                    v-model="answer.answer_variants"
-                    :only-existing-tags="is_disabled"
-                    :typeahead="true">
-                </tags-input>                    
-            </div>
-        </div> 
+ 
+        
+                <div class="row form-group hidden">
+                    <div class="col col-md-3">
+                        <label :for="'answers[' + number + '][answer_variants]'" class="form-control-label">{{translations.answerVariants}}</label>
+                    </div>
+                    <div class="col-12 col-md-9">                    
+                        <tags-input
+                            :element-id="'answers[' + number + '][answer_variants]'"
+                            :placeholder="translations.typeAnswerVariants"
+                            v-model="answer.answer_variants"
+                            :only-existing-tags="is_disabled"
+                            :typeahead="true">
+                        </tags-input>                    
+                    </div>
+                </div>              
         
         <div class="row form-group">
             <div class="col col-md-3">
                 <label :for="'answers[' + number + '][answer]'" class="form-control-label">{{translations.answer}}</label>
             </div>
             <div class="col-12 col-md-9">
-                <input class="form-control" 
-                    v-model="answer.answer" 
-                    :placeholder="translations.answer" 
-                    :name="'answers[' + number + '][answer]'"
-                    type="text" 
-                    required />
+                <div v-if="(answer.answer_type == type_select)">
+                    <select
+                        class="form-control" 
+                        :name="'answers[' + number + '][answer]'" 
+                        v-model="answer.answer"
+                        :disabled="!(answer.answer_type == type_select)"
+                        required>
+                        
+                        <option v-for="(answer_variant, key) in answer.answer_variants"
+                            v-bind:key="key"  
+                            v-bind:value="answer_variant" 
+                            v-text="answer_variant">
+                        </option>
+                    </select>  
+                </div>
+                <div v-else>
+                    <input class="form-control" 
+                        v-model="answer.answer" 
+                        :placeholder="translations.answer" 
+                        :name="'answers[' + number + '][answer]'"
+                        type="text" 
+                        :disabled="!(type_select.indexOf(answer.answer_type) == -1)"
+                        required />
+                </div>  
             </div>
         </div>                    
                         
@@ -90,6 +110,6 @@
 
 <script>
     export default {
-        props: ['answer', 'translations', 'number', 'answer_types', 'is_disabled'],
+        props: ['answer', 'translations', 'number', 'answer_types', 'is_disabled', 'type_select'],
     }
 </script>

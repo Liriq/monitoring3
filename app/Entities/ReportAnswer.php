@@ -37,4 +37,12 @@ class ReportAnswer extends Model
         return $this->belongsTo(Report::class);
     }
     
+    public function setAnswerVariantsAttribute($value)
+    {
+        if ($this->answer_type == TemplateQuestion::TYPE_SELECT) {
+            $array =  !is_array($value) ? explode(',', $value) : $value;
+            $this->attributes['answer_variants'] = json_encode($array);
+        }
+    }                     
+    
 }

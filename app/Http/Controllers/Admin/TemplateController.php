@@ -28,10 +28,7 @@ class TemplateController extends Controller
      */
     public function create()
     {
-        return view('admin.templates.create', [
-            'template' => new Template(),
-            'answerTypes' => TemplateQuestion::ALL_TYPES,          
-        ]);
+        return view('admin.templates.create', $this->getData(new Template));
     }
 
     /**
@@ -46,7 +43,7 @@ class TemplateController extends Controller
         $template = new Template;        
         if ($template->fill($post) && $template->save()) {
             $template->createOrUpdateQuestions($request->questions);
-        
+            
             return redirect()->route('admin.templates.index')->with('flash_success', _i('Data saved successfully!'));
         }
         
@@ -72,10 +69,7 @@ class TemplateController extends Controller
      */
     public function edit(Template $template)
     {
-        return view('admin.templates.edit', [
-            'template' => $template,
-            'answerTypes' => TemplateQuestion::ALL_TYPES, 
-        ]);
+        return view('admin.templates.edit', $this->getData($template));
     }
 
     /**
@@ -118,5 +112,14 @@ class TemplateController extends Controller
         if (!empty($questionsIds)) {
             $template->questions()->whereIn('id', $questionsIds)->delete();
         }     
+    }
+    
+    private function getData($template)
+    {
+        return [
+            'template' => $template,
+            'answerTypes' => TemplateQuestion::ALL_TYPES,
+            'typeSelect' => TemplateQuestion::TYPE_SELECT,     
+        ];
     }
 }

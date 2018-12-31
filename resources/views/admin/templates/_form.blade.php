@@ -23,7 +23,8 @@
             <template-question
                 v-for="(question, index) in questions"
                 v-bind:key="index"
-                v-bind:answer_types="answer_types"
+                v-bind:answer_types="answerTypes"
+                v-bind:type_select="typeSelect"           
                 v-bind:number="index"
                 v-bind:question="question"
                 v-bind:translations="translations"
@@ -44,6 +45,9 @@
 
 @push('scripts')
     <script>
+        var questions = {!! $template->questions->toJson() !!};
+        var answerTypes = {!! json_encode($answerTypes) !!};
+        var typeSelect =  {!! json_encode($typeSelect) !!};     
         var translations = {
                 question: '{{ _i("Question") }}',
                 hint: '{{ _i("Hint") }}',
@@ -61,8 +65,6 @@
                     multiselect: '{{ _i("multiselect") }}',
                 },
             };
-        var questions = {!! $template->questions->toJson() !!};
-        var answerTypes = {!! json_encode($answerTypes) !!};
     </script>
     <script src="/js/admin/templates.js" ></script>
 @endpush

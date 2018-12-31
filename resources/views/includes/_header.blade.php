@@ -2,7 +2,7 @@
 
     <div class="header-menu">
 
-        @include('admin/includes/_menu_toggle')
+        @include('includes._menu_toggle')
 
         <div class="col-sm-5">
             <div class="user-area dropdown float-right">
@@ -10,7 +10,7 @@
                     {{--               
                     <!-- <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar"> -->
                     --}}
-                    <span class="user-avatar rounded-circle">{{ _i('Admin') }}</span>
+                    <span class="user-avatar rounded-circle">{{ Auth::user()->name }}</span>
                 </a>
 
                 <div class="user-menu dropdown-menu">

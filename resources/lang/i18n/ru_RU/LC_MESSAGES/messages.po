@@ -233,3 +233,9 @@ msgstr "Введите вариант ответа и нажмите Enter"
 
 msgid "Answer"
 msgstr "Ответ"
+
+msgid "Employee dashboard"
+msgstr "Панель исполнителя"
+
+msgid "Choose answer"
+msgstr "Выберите ответ"

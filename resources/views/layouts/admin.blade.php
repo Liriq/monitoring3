@@ -13,7 +13,6 @@
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="/favicon.ico">    
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/layout.css') }}" rel="stylesheet">    
@@ -32,10 +31,10 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="/"><img src="/images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="/"><img src="/images/logo2.png" alt="Logo"></a>
+                <a class="navbar-brand navbar-brand-alt hidden" href="/"><img src="/images/logo2.png" alt="Logo"></a>
             </div>
-
-            @include('admin/includes/_main_menu')
+            
+            @include(\Laratrust::hasRole('admin') ? 'includes._admin_menu' : 'includes._dashboard_menu')
         </nav>
     </aside><!-- /#left-panel -->
 
@@ -46,12 +45,12 @@
     <div id="right-panel" class="right-panel">
 
         <!-- Header-->
-        @include('admin/includes/_header')
+        @include('includes._header')
         <!-- Header-->
         
         @yield('breadcrumbs')
         
-        @include('admin.includes._flash_messages')
+        @include('includes._flash_messages')
 
         @yield('content')
 

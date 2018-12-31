@@ -31,13 +31,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        return view('admin.reports.create', [
-            'report' => new Report(),
-            'templates' => Template::get(['name', 'id']),
-            'employeesByTemplate' => User::employee()->get(['id', 'name', 'lastname', 'template_id'])->groupBy('template_id'),
-            'questionsByTemplate' => TemplateQuestion::get()->groupBy('template_id'),   
-            'answerTypes' => TemplateQuestion::ALL_TYPES, 
-        ]);
+        return view('admin.reports.create', $this->getData(new Report));
     }
 
     /**
@@ -52,7 +46,8 @@ class ReportController extends Controller
         $post['name'] = Template::find($post['template_id'])->name;
         $report = new Report;        
         if ($report->fill($post) && $report->save()) {
-            $report->createOrUpdateAnswers($request->answers);            
+            $report->createAnswers($request->answers);
+                 
             return redirect()->route('admin.reports.index')->with('flash_success', _i('Data saved successfully!'));
         }
         
@@ -78,13 +73,7 @@ class ReportController extends Controller
      */
     public function edit(Report $report)
     {
-        return view('admin.reports.edit', [
-            'report' => $report,    
-            'templates' => Template::get(['name', 'id']),   
-            'employeesByTemplate' => User::employee()->get(['id', 'name', 'lastname', 'template_id'])->groupBy('template_id'),
-            'questionsByTemplate' => TemplateQuestion::get()->groupBy('template_id'),   
-            'answerTypes' => TemplateQuestion::ALL_TYPES,        
-        ]);
+        return view('admin.reports.edit', $this->getData($report));
     }
 
     /**
@@ -100,7 +89,7 @@ class ReportController extends Controller
         $post['name'] = Template::find($post['template_id'])->name;        
         if ($report->update($post)) {
             $this->deleteAnswers($report, $request->input('answers.*.id'));
-            $report->createOrUpdateAnswers($request->answers);
+            $report->updateAnswers($request->answers);
             return redirect()->route('admin.reports.index')->with('flash_success', _i('Data successfully updated!'));
         }
         
@@ -141,6 +130,18 @@ class ReportController extends Controller
         if (!empty($answersIds)) {
             $report->answers()->whereIn('id', $answersIds)->delete();
         }     
-    }    
+    }
+    
+    private function getData($report)
+    {
+        return [
+            'report' => $report->load('answers'),
+            'templates' => Template::get(['name', 'id']),
+            'employeesByTemplate' => User::employee()->get(['id', 'name', 'lastname', 'template_id'])->groupBy('template_id'),
+            'questionsByTemplate' => TemplateQuestion::get()->groupBy('template_id'),   
+            'answerTypes' => TemplateQuestion::ALL_TYPES, 
+            'typeSelect' => TemplateQuestion::TYPE_SELECT,
+        ];
+    } 
     
 }

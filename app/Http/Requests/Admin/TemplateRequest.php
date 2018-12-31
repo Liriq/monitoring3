@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Entities\TemplateQuestion;
 
 class TemplateRequest extends FormRequest
 {
@@ -34,6 +35,7 @@ class TemplateRequest extends FormRequest
                     'questions.*.question' => 'required|string|max:255',
                     'questions.*.hint' => 'nullable|string|max:255',
                     'questions.*.is_required' => 'nullable|numeric|in:1',
+                    'questions.*.answer_variants' => 'required_if:answer_type,' . TemplateQuestion::TYPE_SELECT,                    
                 ];
                 break;
             }
@@ -46,6 +48,7 @@ class TemplateRequest extends FormRequest
                     'questions.*.question' => 'required|string|max:255',
                     'questions.*.hint' => 'nullable|string|max:255',
                     'questions.*.is_required' => 'nullable|numeric|in:1',
+                    'questions.*.answer_variants' => 'required_if:questions.*.answer_type,' . TemplateQuestion::TYPE_SELECT,  
                 ];
             }
             default: break;
@@ -53,4 +56,5 @@ class TemplateRequest extends FormRequest
         
         return $rules;
     }
+        
 }

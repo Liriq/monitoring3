@@ -236,3 +236,9 @@ msgstr "Введіть варіант відповіді і натисніть E
 
 msgid "Answer"
 msgstr "Відповідь"
+
+msgid "Employee dashboard"
+msgstr "Панель виконавця"
+
+msgid "Choose answer"
+msgstr "Виберіть відповідь"

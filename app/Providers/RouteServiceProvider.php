@@ -40,6 +40,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
 
         $this->mapAdminWebRoutes();
+        
+        $this->mapDashboardWebRoutes();
     }
 
     /**
@@ -86,5 +88,21 @@ class RouteServiceProvider extends ServiceProvider
             ->as('admin.')
             ->group(base_path('routes/admin.php'));
     }
+    
+    /**
+     * Define the "dashboard" routes for the admin part of application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapDashboardWebRoutes()
+    {
+        Route::middleware(['web', 'auth', 'role:employee|admin'])
+            ->namespace($this->namespace . '\Dashboard')
+            ->prefix('dashboard')
+            ->as('dashboard.')
+            ->group(base_path('routes/dashboard.php'));
+    }    
         
 }

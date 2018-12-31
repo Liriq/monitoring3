@@ -15,10 +15,12 @@
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::middleware(['auth'])->group(function () {
-    Route::redirect('/', '/admin');
+    Route::redirect('/', '/home');
+    
+    Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/lang/{locale?}', [
         'as'=>'lang',

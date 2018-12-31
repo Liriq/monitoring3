@@ -233,3 +233,9 @@ msgstr "Type your answer and press Enter"
 
 msgid "Answer"
 msgstr "Answer"
+
+msgid "Employee dashboard"
+msgstr "Employee dashboard"
+
+msgid "Choose answer"
+msgstr "Choose answer"

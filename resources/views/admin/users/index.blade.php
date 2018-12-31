@@ -33,6 +33,8 @@
                               <table class="data-table-custom table table-striped table-bordered">
                                   <thead>
                                       <tr>
+                                          <th>{{ _i('ID') }}</th>
+                                          <th>{{ _i('Email') }}</th>
                                           <th>{{ _i('Name') }}</th>
                                           <th>{{ _i('Role') }}</th>
                                           <th>{{ _i('Actions') }}</th>
@@ -41,6 +43,8 @@
                                   <tbody>
                                       @foreach($employees as $employee)                                      
                                           <tr>
+                                              <td>{{ $employee->id }}</td>
+                                              <td>{{ $employee->email }}</td>
                                               <td>{{ $employee->name }}</td>
                                               <td>{{ $employee->roles->pluck('name') }}</td>
                                               <td>

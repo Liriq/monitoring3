@@ -44,6 +44,7 @@
                 v-bind:is_disabled="isDisabled"
                 v-bind:key="index"
                 v-bind:answer_types="answerTypes"
+                v-bind:type_select="typeSelect"   
                 v-bind:number="index"
                 v-bind:answer="answer"
                 v-bind:translations="translations"
@@ -67,7 +68,8 @@
         var report = {!! $report->toJson() !!};
         var employeesByTemplate = {!! $employeesByTemplate->toJson() !!};        
         var questionsByTemplate = {!! $questionsByTemplate->toJson() !!};
-        var answerTypes = {!! json_encode($answerTypes) !!};  
+        var answerTypes = {!! json_encode($answerTypes) !!};
+        var typeSelect =  {!! json_encode($typeSelect) !!}; 
         var translations = {
                 question: '{{ _i("Question") }}',
                 answer: '{{ _i("Answer") }}',

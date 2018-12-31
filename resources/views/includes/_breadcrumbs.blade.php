@@ -2,7 +2,7 @@
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>{{ _i('Admin dashboard') }}</h1>
+                <h1>{{ \Laratrust::hasRole('admin') ? _i('Admin dashboard') : _i('Employee dashboard') }}</h1>
             </div>
         </div>
     </div>

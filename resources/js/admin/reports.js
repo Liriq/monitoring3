@@ -13,7 +13,8 @@ new Vue({
         questionsByTemplate: questionsByTemplate,
         translations: translations,
         answerTypes: answerTypes,
-        isDisabled: (report.id > 0)           
+        isDisabled: (report.id > 0),
+        typeSelect: typeSelect,     
     },
     methods: {
         showBlocks: function () {
@@ -46,6 +47,6 @@ new Vue({
             this.loadEmployees();
             this.loadAnswers();
             this.isDisabled = this.isShowBlocks = true; 
-        }        
+        }           
     }    
 })

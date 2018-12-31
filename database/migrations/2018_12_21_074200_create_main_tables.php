@@ -28,7 +28,7 @@ class CreateMainTables extends Migration
             $table->string('hint')->nullable();
             $table->boolean('is_required')->default(false);
             $table->string('answer_type')->default('text');
-            $table->json('answer_variants')->nullable();
+            $table->text('answer_variants')->nullable();
             $table->timestamps();
         });
         Schema::create('reports', function (Blueprint $table) {
@@ -55,8 +55,8 @@ class CreateMainTables extends Migration
             $table->string('hint')->nullable();
             $table->boolean('is_required')->default(true);
             $table->string('answer_type')->default('text');
-            $table->json('answer_variants')->nullable();
-            $table->string('answer');
+            $table->text('answer_variants')->nullable();
+            $table->text('answer');
             $table->timestamps();
         });
         Schema::create('settings', function (Blueprint $table) {

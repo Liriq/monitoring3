@@ -5,7 +5,8 @@ new Vue({
   data: {
     questions: questions,
     translations: translations,
-    answer_types: answerTypes,
+    answerTypes: answerTypes,
+    typeSelect: typeSelect,
   },
   methods: {
     addNewQuestion: function (event) {

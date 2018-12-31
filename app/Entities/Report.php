@@ -51,23 +51,31 @@ class Report extends Model
     public function answers(): HasMany
     {
         return $this->hasMany(ReportAnswer::class);
-    } 
+    }
     
-    public function createOrUpdateAnswers($answers)
+    public function createAnswers($answers)
     {
-        if ($this->answers->isEmpty()) {
-            $this->answers()->createMany($answers);
-        } else {
-            array_where($answers, function ($answer, $key) {
-                if (empty($answer['id'])) {
-                    $this->answers()->create($answer);
-                } else {
-                    $answer['is_required'] = $answer['is_required'] ?? false;
-                    $answer['answer_variants'] = json_encode($answer['answer_variants']);
-                    $this->answers()->where('id', $answer['id'])->update($answer);
-                }
-            });            
-        }
-    }    
+        foreach ($answers as $a) {
+            $this->createAnswer($answers);
+        }        
+    }
+    
+    public function updateAnswers($answers)
+    {
+        foreach ($answers as $answer) {
+            if (empty($answer['id'])) {
+                $this->createAnswer($answers);
+            } else {
+                ReportAnswer::where(['id'=>$answer['id'], 'report_id'=>$this->id])->first()->update(['answer' => $answer['answer']]);
+            }            
+        }          
+
+    }
+    
+    private function createAnswer($answers)
+    {
+        $answer['report_id'] = $this->id;
+        ReportAnswer::create($answer);
+    } 
 
 }

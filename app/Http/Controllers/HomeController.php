@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use LaravelGettext;
+use Laratrust;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $redirectTo = '/';
+        if (Laratrust::hasRole('admin')) {
+            $redirectTo = '/admin';
+        } elseif (Laratrust::hasRole('employee')) {
+            $redirectTo = '/dashboard';
+        }
+        
+        return redirect($redirectTo);
     }
     
     /**

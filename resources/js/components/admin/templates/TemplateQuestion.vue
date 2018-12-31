@@ -34,7 +34,7 @@
                     <span class="switch-label"></span> <span class="switch-handle"></span>
                 </label>
             </div>
-        </div>
+        </div>        
 
         <div class="row form-group">
             <div class="col col-md-3">
@@ -52,7 +52,7 @@
             </div>
         </div>           
         
-        <div class="row form-group">
+        <div class="row form-group" v-show="question.answer_type == type_select">
             <div class="col col-md-3">
                 <label :for="'questions[' + number + '][answer_variants]'" class="form-control-label">{{translations.answerVariants}}</label>
             </div>
@@ -61,7 +61,8 @@
                     :element-id="'questions[' + number + '][answer_variants]'"
                     :placeholder="translations.typeAnswerVariants"
                     v-model="question.answer_variants"
-                    :typeahead="true">
+                    :typeahead="true"
+                    >
                 </tags-input>                    
             </div>
         </div>               
@@ -71,6 +72,6 @@
 
 <script>
     export default {
-        props: ['question', 'translations', 'number', 'answer_types'],
+        props: ['question', 'translations', 'number', 'answer_types', 'type_select'],
     }
 </script>

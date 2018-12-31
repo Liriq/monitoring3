@@ -13,7 +13,7 @@ class TemplateQuestion extends Model
     const TYPE_DATE = 'date';
     const TYPE_NUMBER = 'number';
     const TYPE_SELECT = 'select';
-    const TYPE_MULTISELECT = 'multiselect';
+    // const TYPE_MULTISELECT = 'multiselect';
     
     const ALL_TYPES = [
         self::TYPE_TEXT => self::TYPE_TEXT,
@@ -21,7 +21,7 @@ class TemplateQuestion extends Model
         self::TYPE_DATE => self::TYPE_DATE,
         self::TYPE_NUMBER => self::TYPE_NUMBER,
         self::TYPE_SELECT => self::TYPE_SELECT,
-        self::TYPE_MULTISELECT => self::TYPE_MULTISELECT,
+        // self::TYPE_MULTISELECT => self::TYPE_MULTISELECT,
     ];
     
     /**
@@ -38,7 +38,7 @@ class TemplateQuestion extends Model
         'template_id' => 'integer',
         'is_required' => 'boolean',
         'answer_variants' => 'array',
-    ];
+    ];  
     
     /**
      * @return BelongsTo
@@ -46,6 +46,14 @@ class TemplateQuestion extends Model
     public function template(): BelongsTo
     {
         return $this->belongsTo(Template::class);
+    }  
+    
+    public function setAnswerVariantsAttribute($value)
+    {
+        if ($this->answer_type == TemplateQuestion::TYPE_SELECT) {
+            $array =  explode(',', $value);
+            $this->attributes['answer_variants'] = json_encode($array);
+        }
     }   
     
 }

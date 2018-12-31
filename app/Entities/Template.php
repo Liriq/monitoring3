@@ -36,17 +36,22 @@ class Template extends Model
     public function createOrUpdateQuestions($questions)
     {
         if ($this->questions->isEmpty()) {
-            $this->questions()->createMany($questions);
+            foreach($questions as $q) {
+                $q['template_id'] = $this->id;
+                $question = new TemplateQuestion;
+                $question->fill($q)->save();
+            }
         } else {
-            array_where($questions, function ($question, $key) {
-                if (empty($question['id'])) {
-                    $this->questions()->create($question);
+            foreach ($questions as $q) {
+                if (empty($q['id'])) {
+                    $q['template_id'] = $this->id;
+                    $question = new TemplateQuestion;
+                    $question->fill($q)->save();
                 } else {
-                    $question['is_required'] = $question['is_required'] ?? false;
-                    $question['answer_variants'] = json_encode($question['answer_variants']);
-                    $this->questions()->where('id', $question['id'])->update($question);
-                }
-            });            
+                    $q['is_required'] = $q['is_required'] ?? false;
+                    TemplateQuestion::find($q['id'])->update($q);
+                }                
+            }           
         }
     }
         

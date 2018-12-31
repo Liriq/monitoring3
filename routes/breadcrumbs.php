@@ -77,3 +77,26 @@ Breadcrumbs::for('admin-settings-edit', function ($trail, $setting) {
     $trail->push(_i('Edit'), route('admin.settings.edit', $setting->id));
 });
 
+// Dashboard
+Breadcrumbs::for('dashboard', function ($trail) {
+    $trail->push(_i('Employee dashboard'), route('dashboard.index'));
+});
+
+// Dashboard > Reports
+Breadcrumbs::for('dashboard-reports', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push(_i('Reports'), route('dashboard.reports.index'));
+});
+
+// Dashboard > Reports > Create
+Breadcrumbs::for('dashboard-reports-create', function ($trail) {
+    $trail->parent('dashboard-reports');
+    $trail->push(_i('Create'), route('dashboard.reports.create'));
+});
+
+// Dashboard > Reports > Edit
+Breadcrumbs::for('dashboard-reports-edit', function ($trail, $report) {
+    $trail->parent('dashboard-reports');
+    $trail->push(_i('Edit'), route('dashboard.reports.edit', $report->id));
+});
+
