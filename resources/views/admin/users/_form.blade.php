@@ -126,8 +126,8 @@
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.34&key={{ ENV('GOOGLE_API_KEY') }}"></script>
     <script>
         var employeeRoleId = "{{ optional($roles->where('name', 'employee')->first())->id }}";
-        var selectedRoleId = '{{ optional($user->roles()->first())->id }}';    
-        var area = {!! $user->area ? $user->area : json_encode([])  !!};
+        var selectedRoleId = "{{ optional($user->roles()->first())->id }}";    
+        var area = {!! $user->area ? $user->area->toJson() : json_encode([])  !!};
     </script>
     <script src="{{ asset('/js/admin/users.js') }}" ></script>
 @endpush

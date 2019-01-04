@@ -1,5 +1,5 @@
 new Vue({
-    el: '#user-form-block',
+    el: '#user-form-block',   
     data: {
         selectedRoleId: selectedRoleId,
         employeeRoleId: employeeRoleId,
@@ -44,13 +44,13 @@ new Vue({
             this.infoWindow = new google.maps.InfoWindow();
         },
         showNewCoordinates: function () {        
-            var center = this.circle.getCenter();
-            this.longitude = center.lng();
-            this.latitude = center.lat();
-            this.radius = this.circle.getRadius();       
+            var center = this.circle.getCenter();      
             var bounds = this.circle.getBounds();
             var ne = bounds.getNorthEast();
             var sw = bounds.getSouthWest();
+            this.longitude = center.lng();
+            this.latitude = center.lat();
+            this.radius = this.circle.getRadius(); 
             console.log( this.radius, this.latitude, this.longitude );
             
             var contentString = '<b>Circle moved.</b><br>' +
@@ -62,7 +62,6 @@ new Vue({
             this.infoWindow.setPosition(ne);
             
             this.infoWindow.open(this.map);                    
-        }    
-     
+        },
     }
 })
