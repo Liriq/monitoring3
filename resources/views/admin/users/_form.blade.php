@@ -6,16 +6,17 @@
         
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-home" aria-selected="true">
+            <a class="nav-item nav-link active" id="nav-personal-tab" data-toggle="tab" href="#nav-personal" role="tab" aria-controls="nav-personal" aria-selected="true">
                 <i class="fas fa-user-alt"></i> {{ _i('Personal data') }}
             </a>
-            <a class="nav-item nav-link" id="nav-settings-tab" data-toggle="tab" href="#nav-settings" role="tab" aria-controls="nav-profile" aria-selected="false"  v-show="isShowSettings">
+            <a class="nav-item nav-link" id="nav-settings-tab" data-toggle="tab" href="#nav-settings" role="tab" aria-controls="nav-settings" aria-selected="false"  v-show="isShowSettings" @click="initMap">
                 <i class="fas fa-tools"></i> {{ _i('Settings') }}
-            </a>            
+            </a>          
           </div>
         </nav>
         
         <div class="tab-content" id="nav-tabContent">
+            
             <div class="tab-pane fade show active" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
                   <div class="card">
                       <div class="card-header">
@@ -80,12 +81,11 @@
                   </div>                 
             </div>
             <div class="tab-pane fade" id="nav-settings" role="tabpanel" aria-labelledby="nav-settings-tab">        
-              <div class="card">
+                <div class="card">
                   <div class="card-header">
                       <strong class="card-title"></strong>
                   </div>
                   <div class="card-body">
-
                       <div class="row form-group">
                           <div class="col col-md-3">
                               {{ Form::label('template_id', _i('Template'), ['class' => 'form-control-label']) }}
@@ -93,11 +93,23 @@
                           <div class="col-12 col-md-9">
                               {{ Form::select('template_id', $templates, $user->template_id, ['placeholder' => _i('Choose template'),'class' => 'form-control', 'required' => 'required', 'v-bind:disabled'=>'!isShowSettings']) }}
                           </div>
+                      </div> 
+                      <div class="row form-group">
+                          <div class="col col-md-3">
+                              {{ Form::label('areas', _i('Specify the map area'), ['class' => 'form-control-label']) }}
+                          </div>
+                          <div class="col-12 col-md-9">
+                              <div id="google-map">
+                              </div>
+                              <input type="hidden" name="areas[latitude]" v-model="latitude" />
+                              <input type="hidden" name="areas[longitude]" v-model="longitude" />
+                              <input type="hidden" name="areas[radius]" v-model="radius" />
+                          </div>
                       </div>
-                      
                   </div>
-              </div>               
-          </div>
+              </div>             
+            </div>
+                                    
         </div>
         
         <div class="form-group">
@@ -111,9 +123,12 @@
 {{ Form::close() }}
 
 @push('scripts')
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.34&key={{ ENV('GOOGLE_API_KEY') }}"></script>
     <script>
         var employeeRoleId = "{{ optional($roles->where('name', 'employee')->first())->id }}";
         var selectedRoleId = '{{ optional($user->roles()->first())->id }}';
+        var area = {!! $user->area->toJson() !!};
+        console.log(area, area.radius)
     </script>
-    <script src="/js/admin/users.js" ></script>
+    <script src="{{ asset('/js/admin/users.js') }}" ></script>
 @endpush

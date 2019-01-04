@@ -239,3 +239,6 @@ msgstr "Employee dashboard"
 
 msgid "Choose answer"
 msgstr "Choose answer"
+
+msgid "Specify the map area"
+msgstr "Specify the map area"

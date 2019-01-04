@@ -9,6 +9,7 @@ use Laratrust\Traits\LaratrustUserTrait;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -84,6 +85,14 @@ class User extends Authenticatable
     public function template(): BelongsTo
     {
         return $this->belongsTo(Template::class);
+    } 
+    
+    /**
+     * @return HasOne
+     */
+    public function area(): HasOne
+    {
+        return $this->hasOne(UserArea::class);
     }         
     
     /**
@@ -105,6 +114,17 @@ class User extends Authenticatable
                 $userNote->save();
             }
         }
-    }      
+    }
+    
+    public function createOrUpdateArea($area)
+    {
+        if (!empty($area['radius']) && !empty($area['latitude']) && !empty($area['longitude'])) {
+            if (!empty($this->area)) {
+                $this->area->update($area);                
+            } else {
+                $this->area()->create($area);
+            }
+        }
+    }       
         
 }

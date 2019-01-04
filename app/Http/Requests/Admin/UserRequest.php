@@ -34,6 +34,10 @@ class UserRequest extends FormRequest
                      'note'             => 'nullable|max:2048', 
                      'email'            => 'required|string|unique:users,email|max:255',  
                      'password' => 'required|string|max:255',
+                     'areas' => 'nullable|array',
+                     'areas.*.radius' => 'nullable|numeric',
+                     'areas.*.latitude' => 'nullable|numeric',
+                     'areas.*.longitude' => 'nullable|numeric',
                  ];
                  break;
              }
@@ -46,6 +50,10 @@ class UserRequest extends FormRequest
                      'note'             => 'nullable|max:2048', 
                      'email'            => 'required|string|max:255|unique:users,email,'.$this->id, 
                      'password' => 'nullable|string|max:255', 
+                     'areas' => 'nullable|array',
+                     'areas.*.radius' => 'nullable|numeric',
+                     'areas.*.latitude' => 'nullable|numeric',
+                     'areas.*.longitude' => 'nullable|numeric',
                  ];
              }
              default: break;

@@ -53,6 +53,7 @@ class UserController extends Controller
             $role = Role::where('id', $post['role_id'])->firstOrFail();
             $user->attachRole($role);
             $user->createOrUpdateNote($post['note'] ?? null);
+            $user->createOrUpdateArea($request->areas);
             
             return redirect()->route('admin.users.index')->with('flash_success', _i('Data saved successfully!'));
         }
@@ -103,7 +104,7 @@ class UserController extends Controller
         
         if ($user->save()){
             $user->createOrUpdateNote($post['note'] ?? null);
-            
+            $user->createOrUpdateArea($request->areas);
             return redirect()->route('admin.users.index')->with('flash_success', _i('Data successfully updated!'));
         }
         

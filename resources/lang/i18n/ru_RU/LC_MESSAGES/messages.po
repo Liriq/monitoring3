@@ -239,3 +239,6 @@ msgstr "Панель исполнителя"
 
 msgid "Choose answer"
 msgstr "Выберите ответ"
+
+msgid "Specify the map area"
+msgstr "Указать область карты"

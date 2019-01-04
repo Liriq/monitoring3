@@ -242,3 +242,6 @@ msgstr "Панель виконавця"
 
 msgid "Choose answer"
 msgstr "Виберіть відповідь"
+
+msgid "Specify the map area"
+msgstr "Вказати область карти"
