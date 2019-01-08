@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UserArea extends Model
 {
+    const EARTH_RADIUS = 6371000; // Radius of Earth in meters
+    
     /**
      * The attributes that are mass assignable.
      *

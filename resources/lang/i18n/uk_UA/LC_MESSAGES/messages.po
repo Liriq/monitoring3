@@ -245,3 +245,6 @@ msgstr "Виберіть відповідь"
 
 msgid "Specify the map area"
 msgstr "Вказати область карти"
+
+msgid "User's area shouldn't match with another areas"
+msgstr "Область користувача не повинна збігатися з іншими областями"
