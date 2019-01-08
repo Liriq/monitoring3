@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Entities\User;
 use App\Entities\Role;
 use App\Entities\Template;
+use App\Entities\UserArea;
 use App\Http\Requests\Admin\UserRequest;
 
 class UserController extends Controller
@@ -30,11 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create', [
-            'user' => new User(),
-            'roles' => Role::get(['name', 'id']),
-            'templates' => Template::pluck('name', 'id'),            
-        ]);
+        return view('admin.users.create', $this->getData(new User()));
     }
 
     /**
@@ -80,11 +77,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', [
-            'user' => $user,
-            'roles' => Role::get(['name', 'id']),
-            'templates' => Template::pluck('name', 'id'),           
-        ]);
+        return view('admin.users.edit', $this->getData($user));
     }
 
     /**
@@ -123,4 +116,15 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index')->with('flash_success', _i('Data successfully deleted!'));
     }
+    
+    private function getData($user)
+    {
+        return [
+            'user' => $user,
+            'roles' => Role::get(['name', 'id']),
+            'templates' => Template::pluck('name', 'id'),
+            'areas' => UserArea::whereNotIn('user_id', $user->id ? [$user->id] : [])->get(),
+        ];
+    }
+    
 }

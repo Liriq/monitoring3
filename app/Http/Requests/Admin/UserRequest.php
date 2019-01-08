@@ -71,7 +71,7 @@ class UserRequest extends FormRequest
      {
          $validator->after(
              function (Validator $validator) {
-                 $userAreas = UserArea::whereNotIn('id', $this->id ? [$this->id] : [])->get();
+                 $userAreas = UserArea::whereNotIn('user_id', $this->id ? [$this->id] : [])->get();
                  foreach ($userAreas as $userArea) {
                      $distance = $this->getDistance($userArea->latitude, $userArea->longitude, $this->areas['latitude'], $this->areas['longitude']);
                      if ($distance < ($userArea->radius + $this->areas['radius'])) {

@@ -128,6 +128,7 @@
         var employeeRoleId = "{{ optional($roles->where('name', 'employee')->first())->id }}";
         var selectedRoleId = "{{ optional($user->roles()->first())->id }}";    
         var area = {!! $user->area ? $user->area->toJson() : json_encode([])  !!};
+        var areas = {!! $areas->isNotEmpty() ? $areas->toJson() : json_encode([])  !!};
     </script>
     <script src="{{ asset('/js/admin/users.js') }}" ></script>
 @endpush

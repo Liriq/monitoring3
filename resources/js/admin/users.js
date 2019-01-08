@@ -1,6 +1,7 @@
 new Vue({
     el: '#user-form-block',   
     data: {
+        areas: areas,
         selectedRoleId: selectedRoleId,
         employeeRoleId: employeeRoleId,
         isShowSettings: selectedRoleId == employeeRoleId,
@@ -42,6 +43,7 @@ new Vue({
             
             // Define an info window on the map.
             this.infoWindow = new google.maps.InfoWindow();
+            this.initOthersAreas();
         },
         showNewCoordinates: function () {        
             var center = this.circle.getCenter();      
@@ -63,5 +65,28 @@ new Vue({
             
             this.infoWindow.open(this.map);                    
         },
+        initOthersAreas: function () {
+            console.log('initOthersAreas');
+            vm = this;
+            if (vm.areas.lenght < 1) {
+                return false;
+            }
+            var circle;
+            vm.areas.forEach(function(area, i) {
+                var center = {lat: Number(area.latitude), lng: Number(area.longitude)};
+                
+                circle = new google.maps.Circle({
+                    center: center,
+                    radius: Number(area.radius),
+                    strokeColor: '#ff9f9f',
+                    strokeOpacity: 1,
+                    strokeWeight: 3,
+                    fillColor: '#a2a0a0',
+                    fillOpacity: 0.6,
+                });
+                
+                circle.setMap(vm.map);          
+            });            
+        }
     }
 })
