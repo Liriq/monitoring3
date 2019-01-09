@@ -55,8 +55,8 @@ class Report extends Model
     
     public function createAnswers($answers)
     {
-        foreach ($answers as $a) {
-            $this->createAnswer($answers);
+        foreach ($answers as $answer) {
+            $this->createAnswer($answer);
         }        
     }
     
@@ -64,7 +64,7 @@ class Report extends Model
     {
         foreach ($answers as $answer) {
             if (empty($answer['id'])) {
-                $this->createAnswer($answers);
+                $this->createAnswer($answer);
             } else {
                 ReportAnswer::where(['id'=>$answer['id'], 'report_id'=>$this->id])->first()->update(['answer' => $answer['answer']]);
             }            
@@ -72,7 +72,7 @@ class Report extends Model
 
     }
     
-    private function createAnswer($answers)
+    private function createAnswer($answer)
     {
         $answer['report_id'] = $this->id;
         ReportAnswer::create($answer);

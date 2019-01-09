@@ -27,7 +27,7 @@ new Vue({
             this.circle = new google.maps.Circle({
                 center: center,
                 radius: this.radius,
-                strokeColor: '#f63d3d',
+                strokeColor: '#ffa500',
                 strokeOpacity: 1,
                 strokeWeight: 3,
                 fillColor: '#ffc800',
@@ -67,18 +67,16 @@ new Vue({
         },
         initOthersAreas: function () {
             console.log('initOthersAreas');
-            vm = this;
+            var vm = this;
             if (vm.areas.lenght < 1) {
                 return false;
             }
             var circle;
-            vm.areas.forEach(function(area, i) {
-                var center = {lat: Number(area.latitude), lng: Number(area.longitude)};
-                
+            vm.areas.forEach(function(area, i) {                
                 circle = new google.maps.Circle({
-                    center: center,
+                    center: {lat: Number(area.latitude), lng: Number(area.longitude)},
                     radius: Number(area.radius),
-                    strokeColor: '#ff9f9f',
+                    strokeColor: '#ffa500',
                     strokeOpacity: 1,
                     strokeWeight: 3,
                     fillColor: '#a2a0a0',
@@ -87,6 +85,6 @@ new Vue({
                 
                 circle.setMap(vm.map);          
             });            
-        }
+        },
     }
 })

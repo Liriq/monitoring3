@@ -248,3 +248,6 @@ msgstr "Вказати область карти"
 
 msgid "User's area shouldn't match with another areas"
 msgstr "Область користувача не повинна збігатися з іншими областями"
+
+msgid "Deadline Reporting"
+msgstr "Кінцевий термін звітності"

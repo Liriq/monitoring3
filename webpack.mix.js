@@ -75,4 +75,5 @@ mix.js('resources/js/admin/app.js', 'public/js/admin')
     .copyDirectory('resources/images', 'public/images')
     .js('resources/js/admin/users.js', 'public/js/admin/users.js')
     .js('resources/js/admin/templates.js', 'public/js/admin/templates.js')
-    .js('resources/js/admin/reports.js', 'public/js/admin/reports.js');
+    .js('resources/js/admin/reports.js', 'public/js/admin/reports.js') 
+    .js('resources/js/admin/reports-list.js', 'public/js/admin/reports-list.js');

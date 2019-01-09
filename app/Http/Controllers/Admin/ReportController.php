@@ -6,9 +6,12 @@ use App\Entities\Report;
 use App\Entities\Template;
 use App\Entities\TemplateQuestion;
 use App\Entities\User;
+use App\Entities\UserArea;
+use App\Entities\Setting;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ReportRequest;
 use App\Http\Requests\Admin\ReportAnswersRequest;
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -19,8 +22,17 @@ class ReportController extends Controller
      */
     public function index()
     {
+        $deadlineDay = optional(Setting::whereName(Setting::REPORT_DEADLINE)->first())->value;
+        $start = (new Carbon('first day of this month'))->startOfDay();
+        $finish = (new Carbon('first day of this month'))->addDays($deadlineDay - 1)->endOfDay();
+        
         return view('admin.reports.index', [
             'reports' => Report::get(),
+            'areas' => UserArea::get(),
+            'usersWithCompletedReports' => User::whereHas('reports', function($query) use ($start, $finish) {
+                $query->whereBetween('published_at', [$start, $finish]);
+            })->pluck('id', 'id'),
+            'finish' => $finish,
         ]);
     }
 

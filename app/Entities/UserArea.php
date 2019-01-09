@@ -24,11 +24,26 @@ class UserArea extends Model
     ];
     
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['user_full_name'];    
+    
+    /**
      * @return BelongsTo
      */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }          
+    }
+    
+    /**
+     * @return string
+     */
+    public function getUserFullNameAttribute(): string
+    {
+        return $this->user->lastname . ' ' . $this->user->name;
+    }             
     
 }

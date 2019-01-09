@@ -245,3 +245,6 @@ msgstr "Specify the map area"
 
 msgid "User's area shouldn't match with another areas"
 msgstr "User's area shouldn't match with another areas"
+
+msgid "Deadline Reporting"
+msgstr "Deadline Reporting"

@@ -8,6 +8,21 @@
 @section('content')
 <div class="content mt-3">
     <div class="animated fadeIn">
+        <div class="row">
+            <div id="map-reports">
+                <div class="col-md-12">
+                    <div class="card">  
+                        <div class="card-header">
+                            <strong class="card-title">{{ _i("Deadline Reporting") . ': ' . $finish->format('d-m-Y') }}</strong>
+                        </div>                        
+                        <div class="card-body">              
+                            <div id="google-map">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
         <div class="row"> 
             <div class="col-md-12 margin-bottom-1">
                 <a href="{{ route('admin.reports.create') }}" class="btn btn-success float-right">{{ _i('Add') }}</a>  
@@ -61,11 +76,15 @@
 
 
 @push('scripts')
-<script>
-    (function ($) {
-        $('.data-table-custom').DataTable({
-            lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
-        });
-    })(jQuery);   
-</script>
+    <script>
+        (function ($) {
+            $('.data-table-custom').DataTable({
+                lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+            });
+        })(jQuery);  
+        var areas = {!! $areas->isNotEmpty() ? $areas->toJson() : json_encode([])  !!}; 
+        var usersWithCompletedReports = {!! $usersWithCompletedReports->isNotEmpty() ? $usersWithCompletedReports->toJson() : json_encode([])  !!};
+    </script>
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.34&key={{ ENV('GOOGLE_API_KEY') }}"></script>
+    <script src="/js/admin/reports-list.js" ></script>
 @endpush
