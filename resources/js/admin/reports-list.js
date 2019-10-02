@@ -37,7 +37,7 @@ new Vue({
                 circle.setMap(vm.map);    
                 
                 circle.addListener('click', function() {
-                    vm.infoWindow.setContent("<h4>" + area.user_full_name + "</h4>");
+                    vm.infoWindow.setContent(area.report_table);
                     vm.infoWindow.setPosition({lat: Number(area.latitude), lng: Number(area.longitude)});                    
                     vm.infoWindow.open(vm.map); 
                 });      

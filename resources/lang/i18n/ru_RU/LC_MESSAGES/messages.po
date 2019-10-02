@@ -248,3 +248,9 @@ msgstr "Область пользователя не должна совпада
 
 msgid "Deadline Reporting"
 msgstr "Конечный срок отчетности"
+
+msgid "Indicator"
+msgstr "Показатель"
+
+msgid "Exceeding the standard, times"
+msgstr "Превышение норматива, раз"

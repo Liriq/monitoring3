@@ -2,7 +2,9 @@
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
+                @auth
                 <h1>{{ \Laratrust::hasRole('admin') ? _i('Admin dashboard') : _i('Employee dashboard') }}</h1>
+                @endauth                
             </div>
         </div>
     </div>

@@ -100,3 +100,8 @@ Breadcrumbs::for('dashboard-reports-edit', function ($trail, $report) {
     $trail->push(_i('Edit'), route('dashboard.reports.edit', $report->id));
 });
 
+// Frontend > Reports
+Breadcrumbs::for('frontend-reports', function ($trail) {
+    $trail->push(_i('Reports'), route('frontend.reports.index'));
+});
+

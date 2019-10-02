@@ -248,3 +248,9 @@ msgstr "User's area shouldn't match with another areas"
 
 msgid "Deadline Reporting"
 msgstr "Deadline Reporting"
+
+msgid "Indicator"
+msgstr "Indicator"
+
+msgid "Exceeding the standard, times"
+msgstr "Exceeding the standard, times"

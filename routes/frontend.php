@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Frontend Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -11,10 +11,10 @@
 |
 */
 
-Auth::routes();
+Route::get('/reports', 'ReportController@index')->name('reports.index');
 
-Route::middleware(['auth'])->group(function () {
-    Route::redirect('/', '/home');
-    
-    Route::get('/home', 'HomeController@index')->name('home');
-});
+Route::get('/lang/{locale?}', [
+    'as'=>'lang',
+    'uses'=>'FrontendController@changeLang'
+]); 
+

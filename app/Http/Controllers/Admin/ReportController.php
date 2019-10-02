@@ -26,9 +26,28 @@ class ReportController extends Controller
         $start = (new Carbon('first day of this month'))->startOfDay();
         $finish = (new Carbon('first day of this month'))->addDays($deadlineDay - 1)->endOfDay();
         
+        $reports = Report::query()
+            ->with(['answers'])
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $areas = UserArea::get(['user_id', 'latitude', 'longitude', 'radius'])
+            ->each(function (UserArea $area) use ($reports, $start, $finish) {
+                $userID = $area->user_id;
+                $areaReport = $reports->first(function (Report $report) use ($userID) {
+                    return ($report->user_id == $userID && $report->answers->isNotEmpty());
+                });
+
+                $reportTable = view('frontend.reports._table')
+                    ->with('reportAnswers', optional($areaReport)->answers ?? [])
+                    ->render();
+
+                $area->setAttribute('report_table', $reportTable);
+            });
+
         return view('admin.reports.index', [
-            'reports' => Report::get(),
-            'areas' => UserArea::get(),
+            'reports' => $reports,
+            'areas' => $areas,
             'usersWithCompletedReports' => User::whereHas('reports', function($query) use ($start, $finish) {
                 $query->whereBetween('published_at', [$start, $finish]);
             })->pluck('id', 'id'),

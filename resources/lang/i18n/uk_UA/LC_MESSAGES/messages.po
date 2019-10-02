@@ -251,3 +251,9 @@ msgstr "Область користувача не повинна збігати
 
 msgid "Deadline Reporting"
 msgstr "Кінцевий термін звітності"
+
+msgid "Indicator"
+msgstr "Показник"
+
+msgid "Exceeding the standard, times"
+msgstr "Перевищення нормативу, раз"

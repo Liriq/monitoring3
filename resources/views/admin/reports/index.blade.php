@@ -3,6 +3,13 @@
 @section('breadcrumbs', Breadcrumbs::render('admin-reports') )
 
 @push('styles')
+<style type="text/css">
+    #google-map {
+        height: 500px;
+        width: 700px;
+        margin-top: 2%;
+    }
+</style>
 @endpush
 
 @section('content')

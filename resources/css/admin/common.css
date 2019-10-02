@@ -19,9 +19,3 @@
 .hidden {
     display: none !important;
 }
-
-#google-map {
-    height: 500px;
-    width: 700px;
-    margin-top: 2%;
-}
