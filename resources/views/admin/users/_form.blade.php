@@ -1,3 +1,13 @@
+@push('styles')
+<style type="text/css">
+    #google-map {
+        height: 500px;
+        width: 700px;
+        margin-top: 2%;
+    }
+</style>
+@endpush
+
 {{ Form::model($user, ['route' => !empty($user->id)? ['admin.users.update', $user->id] : ['admin.users.store'], 'class' => 'form-horizontal form-label-left', 'id' => 'users-form', 'enctype' => 'multipart/form-data']) }}   
         @method(!empty($user->id)? 'PUT' : 'POST')
         @if (!empty($user->id))
