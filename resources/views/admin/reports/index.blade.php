@@ -91,6 +91,8 @@
         })(jQuery);  
         var areas = {!! $areas->isNotEmpty() ? $areas->toJson() : json_encode([])  !!}; 
         var usersWithCompletedReports = {!! $usersWithCompletedReports->isNotEmpty() ? $usersWithCompletedReports->toJson() : json_encode([])  !!};
+        var latitude = {!! 46.5510679 !!};
+        var zoom = {!! 12 !!};
     </script>
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.34&key={{ ENV('GOOGLE_API_KEY') }}"></script>
     <script src="/js/admin/reports-list.js" ></script>
