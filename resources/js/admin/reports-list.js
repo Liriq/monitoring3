@@ -6,13 +6,13 @@ new Vue({
         map: null,
         infoWindow: null,
         longitude: 30.7998284183,  
-        latitude: 46.5510679,
+        latitude: 49.5510679,
     },
     methods: {
-        initMap: function () {            
+        initMap: function () {     
             this.map = new google.maps.Map(document.getElementById('google-map'), {
               center: {lat: this.latitude, lng: this.longitude},
-              zoom: 12
+              zoom: 6
             });
             this.infoWindow = new google.maps.InfoWindow();
             this.initOthersAreas();
