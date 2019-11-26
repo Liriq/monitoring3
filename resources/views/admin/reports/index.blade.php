@@ -18,21 +18,21 @@
         <div class="row">
             <div id="map-reports">
                 <div class="col-md-12">
-                    <div class="card">  
+                    <div class="card">
                         <div class="card-header">
                             <strong class="card-title">{{ _i("Deadline Reporting") . ': ' . $finish->format('d-m-Y') }}</strong>
-                        </div>                        
-                        <div class="card-body">              
+                        </div>
+                        <div class="card-body">
                             <div id="google-map">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>    
-        <div class="row"> 
+        </div>
+        <div class="row">
             <div class="col-md-12 margin-bottom-1">
-                <a href="{{ route('admin.reports.create') }}" class="btn btn-success float-right">{{ _i('Add') }}</a>  
+                <a href="{{ route('admin.reports.create') }}" class="btn btn-success float-right">{{ _i('Add') }}</a>
             </div>
             <div class="col-md-12">
                 <div class="card">
@@ -51,7 +51,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($reports as $report)                                      
+                                @foreach($reports as $report)
                                     <tr>
                                         <td>{{ $report->id }}</td>
                                         <td>{{ $report->name }}</td>
@@ -61,22 +61,22 @@
                                             <a href="{{ route('admin.reports.edit', $report->id) }}" class="btn btn-warning">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            
-                                            
+
+
                                             <a href="#" onclick="event.preventDefault();document.getElementById('destroy_reports_form_{{ $report->id }}').submit();" class="btn btn-danger">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                             {{Form::open(['id'=>'destroy_reports_form_'.$report->id, 'method'  => 'DELETE', 'route' => ['admin.reports.destroy', $report->id], 'class'=>"delete-form"])}}
-                                            {{ Form::close() }}  
+                                            {{ Form::close() }}
                                         </td>
-                                    </tr>                                      
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-                </div>                 
+                </div>
             </div>
-        </div> 
+        </div>
     </div><!-- .animated -->
 </div><!-- .content -->
 @endsection
@@ -88,9 +88,8 @@
             $('.data-table-custom').DataTable({
                 lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
             });
-        })(jQuery);  
-        var areas = {!! $areas->isNotEmpty() ? $areas->toJson() : json_encode([])  !!}; 
-        var usersWithCompletedReports = {!! $usersWithCompletedReports->isNotEmpty() ? $usersWithCompletedReports->toJson() : json_encode([])  !!};
+        })(jQuery);
+        var areas = {!! $areas->isNotEmpty() ? $areas->toJson() : json_encode([])  !!};
         var latitude = {!! 46.5510679 !!};
         var zoom = {!! 12 !!};
     </script>

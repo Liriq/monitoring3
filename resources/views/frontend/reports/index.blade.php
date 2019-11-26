@@ -18,11 +18,11 @@
         <div class="row">
             <div id="map-reports">
                 <div class="col-md-12">
-                    <div class="card">  
+                    <div class="card">
                         <div class="card-header">
                             <strong class="card-title">{{ _i("Deadline Reporting") . ': ' . $finish->format('d-m-Y') }}</strong>
-                        </div>                        
-                        <div class="card-body">              
+                        </div>
+                        <div class="card-body">
                             <div id="google-map">
                             </div>
                         </div>
@@ -36,9 +36,8 @@
 
 
 @push('scripts')
-    <script> 
-        var areas = {!! $areas->isNotEmpty() ? $areas->toJson() : json_encode([])  !!}; 
-        var usersWithCompletedReports = {!! $usersWithCompletedReports->isNotEmpty() ? $usersWithCompletedReports->toJson() : json_encode([])  !!};
+    <script>
+        var areas = {!! $areas->isNotEmpty() ? $areas->toJson() : json_encode([])  !!};
         var latitude = {!! 49.5510679 !!};
         var zoom = {!! 6 !!};
     </script>

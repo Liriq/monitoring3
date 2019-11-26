@@ -3,6 +3,7 @@
 @section('breadcrumbs', Breadcrumbs::render('admin-templates-create') )
 
 @push('styles')
+    <link href="{{ asset('css/admin/bootstrap-colorpicker.min.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -13,7 +14,7 @@
                 <strong>{{ _i('Create template') }}</strong>
             </div>
             <div id="template-block" class="card-body card-block">
-                 @include('admin.templates._form')                 
+                 @include('admin.templates._form')
             </div>
         </div>
     </div><!-- .animated -->
@@ -22,4 +23,5 @@
 
 
 @push('scripts')
+    <script src="/js/admin/bootstrap-colorpicker.min.js" ></script>
 @endpush

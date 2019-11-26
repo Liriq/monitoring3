@@ -12,9 +12,10 @@
 */
 
 Route::get('/reports', 'ReportController@index')->name('reports.index');
+Route::get('/json-reports', 'ReportController@jsonReports')->name('reports.json-reports');
 
 Route::get('/lang/{locale?}', [
     'as'=>'lang',
     'uses'=>'FrontendController@changeLang'
-]); 
+]);
 

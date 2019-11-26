@@ -12,7 +12,7 @@ let nodeDir = './node_modules';
  | file for the application as well as bundling up all the JS files.
  |
  */
- 
+
  mix.webpackConfig({
     externals: {
         // This mean that require('jquery') will refer to global var jQuery
@@ -35,9 +35,11 @@ let nodeDir = './node_modules';
 
 mix.js('resources/js/admin/app.js', 'public/js/admin')
     .js('resources/js/app.js', 'public/js')
-    .copy('resources/js/admin/jquery.min.js', 'public/js/admin')    
+    .copy('resources/js/admin/jquery.min.js', 'public/js/admin')
+    .copy('resources/js/admin/bootstrap-colorpicker.min.js', 'public/js/admin')
+    .copy('resources/css/admin/bootstrap-colorpicker.min.css', 'public/css/admin')
     .js(
-        [            
+        [
             nodeDir + '/popper.js/dist/umd/popper.min.js',
             nodeDir + '/datatables.net/js/jquery.dataTables.min.js',
             nodeDir + '/datatables.net-bs4/js/dataTables.bootstrap4.min.js',
@@ -50,9 +52,9 @@ mix.js('resources/js/admin/app.js', 'public/js/admin')
             nodeDir + '/datatables.net-buttons/js/buttons.print.min.js',
             nodeDir + '/datatables.net-buttons/js/buttons.colVis.min.js',
             nodeDir + '/select2/dist/js/select2.full.min.js',
-            'resources/js/admin/layout-main.js',        
-            'resources/js/admin/common.js',        
-        ], 
+            'resources/js/admin/layout-main.js',
+            'resources/js/admin/common.js',
+        ],
         'public/js/admin/layout.js'
     )
     .sass('resources/sass/app.scss', 'public/css')
@@ -68,12 +70,12 @@ mix.js('resources/js/admin/app.js', 'public/js/admin')
             'resources/css/admin/googleapis.css',
             'resources/css/admin/style.css',
             'resources/css/admin/common.css',
-        ], 
+        ],
         'public/css/admin/layout.css'
     )
     .copyDirectory('resources/libraries/fontawesome/webfonts', 'public/css/webfonts')
     .copyDirectory('resources/images', 'public/images')
     .js('resources/js/admin/users.js', 'public/js/admin/users.js')
     .js('resources/js/admin/templates.js', 'public/js/admin/templates.js')
-    .js('resources/js/admin/reports.js', 'public/js/admin/reports.js') 
+    .js('resources/js/admin/reports.js', 'public/js/admin/reports.js')
     .js('resources/js/admin/reports-list.js', 'public/js/admin/reports-list.js');

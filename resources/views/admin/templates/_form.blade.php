@@ -1,9 +1,9 @@
-{{ Form::model($template, ['route' => !empty($template->id)? ['admin.templates.update', $template->id] : ['admin.templates.store'], 'class' => 'form-horizontal form-label-left', 'id' => 'templates-form', 'enctype' => 'multipart/form-data']) }}   
+{{ Form::model($template, ['route' => !empty($template->id)? ['admin.templates.update', $template->id] : ['admin.templates.store'], 'class' => 'form-horizontal form-label-left', 'id' => 'templates-form', 'enctype' => 'multipart/form-data']) }}
         @method(!empty($template->id)? 'PUT' : 'POST')
         @if (!empty($template->id))
             {{ Form::hidden('id', $template->id) }}
-        @endif   
-        
+        @endif
+
         <div class="row form-group">
             <div class="col col-md-3">
                 {{ Form::label('input_name', _i('Name'), ['class' => 'form-control-label']) }}
@@ -12,8 +12,17 @@
                 {{ Form::text("name", $template->name, ["class" => "form-control", "placeholder" => _i('Name'), "id"=>"input_name", 'required' => 'required']) }}
             </div>
         </div>
-        
-        
+
+        <div class="row form-group">
+            <div class="col col-md-3">
+                {{ Form::label('input_color', _i('Color'), ['class' => 'form-control-label']) }}
+            </div>
+            <div class="col-12 col-md-9">
+                {{ Form::text("color", $template->color, ["class" => "form-control", "placeholder" => _i('Color'), "id"=>"input_color"]) }}
+            </div>
+        </div>
+
+
         <hr/>
         <h3 class="margin-bottom-1">{{ _i('Questions') }}:</h3>
         <div class="form-group">
@@ -24,7 +33,7 @@
                 v-for="(question, index) in questions"
                 v-bind:key="index"
                 v-bind:answer_types="answerTypes"
-                v-bind:type_select="typeSelect"           
+                v-bind:type_select="typeSelect"
                 v-bind:number="index"
                 v-bind:question="question"
                 v-bind:translations="translations"
@@ -32,7 +41,7 @@
             >
             </template-question>
         </div>
-        
+
         <div class="form-group">
             <div class="float-right">
                 {{ Form::submit( !empty($template->id) ? _i('Edit') : _i('Save'), ['class' => 'btn btn-success']) }}
@@ -47,7 +56,7 @@
     <script>
         var questions = {!! $template->questions->toJson() !!};
         var answerTypes = {!! json_encode($answerTypes) !!};
-        var typeSelect =  {!! json_encode($typeSelect) !!};     
+        var typeSelect =  {!! json_encode($typeSelect) !!};
         var translations = {
                 question: '{{ _i("Question") }}',
                 hint: '{{ _i("Hint") }}',
@@ -65,6 +74,10 @@
                     multiselect: '{{ _i("multiselect") }}',
                 },
             };
+
+        window.jQuery(function () {
+            window.jQuery('#input_color').colorpicker();
+        });
     </script>
     <script src="/js/admin/templates.js" ></script>
 @endpush

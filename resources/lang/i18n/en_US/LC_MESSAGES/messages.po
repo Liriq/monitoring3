@@ -254,3 +254,6 @@ msgstr "Indicator"
 
 msgid "Exceeding the standard, times"
 msgstr "Exceeding the standard, times"
+
+msgid "Color"
+msgstr "Color"

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Template extends Model
 {
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -15,8 +15,9 @@ class Template extends Model
      */
     protected $fillable = [
         'name',
+        'color',
     ];
-    
+
     /**
      * @return HasMany
      */
@@ -24,7 +25,7 @@ class Template extends Model
     {
         return $this->hasMany(TemplateQuestion::class);
     }
-    
+
     /**
      * @return HasMany
      */
@@ -32,7 +33,7 @@ class Template extends Model
     {
         return $this->hasMany(Report::class);
     }
-    
+
     public function createOrUpdateQuestions($questions)
     {
         if ($this->questions->isEmpty()) {
@@ -50,9 +51,9 @@ class Template extends Model
                 } else {
                     $q['is_required'] = $q['is_required'] ?? false;
                     TemplateQuestion::find($q['id'])->update($q);
-                }                
-            }           
+                }
+            }
         }
     }
-        
+
 }

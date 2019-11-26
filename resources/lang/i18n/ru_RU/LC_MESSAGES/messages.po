@@ -254,3 +254,6 @@ msgstr "Показатель"
 
 msgid "Exceeding the standard, times"
 msgstr "Превышение норматива, раз"
+
+msgid "Color"
+msgstr "Цвет"
